@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Networking Master — Direct Response do Zero ao Avançado</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:       #1A6EFF;
+      --blue-light: #4D94FF;
+      --blue-dark:  #0A3A8A;
+      --black:      #08090F;
+      --dark:       #0F1219;
+      --card:       #13161F;
+      --border:     #1C2135;
+      --text:       #D8DCF0;
+      --muted:      #6B7494;
+      --white:      #FFFFFF;
+      --gold:       #E8B84B;
+      --purple:     #A855F7;
+      --purple-dark:#7B1FE8;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+    .label {
+      display: inline-block;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--blue-light);
+      border-bottom: 1px solid rgba(77,148,255,.35);
+      padding-bottom: 4px;
+      margin-bottom: 20px;
+    }
+
+    h1, h2, h3 { line-height: 1.15; font-weight: 800; }
+    .hl { color: var(--blue-light); }
+
+    .btn {
+      display: inline-block;
+      background: var(--blue);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      padding: 16px 40px;
+      border-radius: 6px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      letter-spacing: .01em;
+      transition: background .2s, transform .15s;
+      box-shadow: 0 4px 28px rgba(26,110,255,.35);
+    }
+    .btn:hover { background: #155cdd; transform: translateY(-1px); }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(8,9,15,.9);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 0;
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+    .logo { display: flex; align-items: center; }
+    .logo svg { height: 36px; width: auto; }
+    .nav-btn {
+      font-size: .88rem; font-weight: 700;
+      color: #fff; background: var(--blue);
+      padding: 9px 22px; border-radius: 5px;
+      text-decoration: none; transition: background .2s;
+    }
+    .nav-btn:hover { background: #155cdd; }
+
+    /* HERO LOGO */
+    .hero-logo { display: flex; justify-content: center; margin-bottom: 36px; }
+    .hero-logo svg { height: 72px; width: auto; }
+
+    /* HERO */
+    .hero {
+      padding: 148px 0 96px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; inset: 0; z-index: 0;
+      background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(26,110,255,.14) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero > .container { position: relative; z-index: 1; }
+
+    .hero h1 {
+      font-size: clamp(2rem, 4.5vw, 3.4rem);
+      color: var(--white);
+      max-width: 860px;
+      margin: 0 auto 22px;
+      font-weight: 700;
+      line-height: 1.18;
+    }
+    .h1-brand {
+      font-style: italic;
+      font-weight: 900;
+      color: var(--white);
+    }
+    .h1-dim {
+      color: var(--blue-light);
+      font-weight: 700;
+    }
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 580px;
+      margin: 0 auto 38px;
+      line-height: 1.75;
+    }
+    .hero-note { margin-top: 14px; font-size: .82rem; color: var(--muted); }
+
+    .hero-stats {
+      display: flex; justify-content: center; gap: 56px; flex-wrap: wrap;
+      margin-top: 68px; padding-top: 44px;
+      border-top: 1px solid var(--border);
+    }
+    .hero-stat strong { display: block; font-size: 2rem; font-weight: 900; color: var(--white); }
+    .hero-stat span { font-size: .82rem; color: var(--muted); letter-spacing: .02em; }
+
+    /* TÓPICOS BAR */
+    .topics-bar {
+      background: var(--dark);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 22px 0;
+    }
+    .topics-bar-label {
+      text-align: center;
+      font-size: .72rem; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--muted);
+      margin-bottom: 14px;
+    }
+    .topics-list {
+      display: flex; justify-content: center;
+      gap: 0; flex-wrap: wrap;
+    }
+    .topic-item {
+      font-size: .88rem; font-weight: 600; color: var(--text);
+      padding: 0 24px;
+      border-right: 1px solid var(--border);
+    }
+    .topic-item:last-child { border-right: none; }
+
+    /* SECTIONS */
+    .section { padding: 92px 0; }
+    .section-header { text-align: center; margin-bottom: 56px; }
+    .section-header h2 {
+      font-size: clamp(1.75rem, 3.2vw, 2.6rem);
+      color: var(--white); margin-bottom: 14px;
+    }
+    .section-header p { font-size: 1rem; color: var(--muted); max-width: 520px; margin: 0 auto; }
+
+    /* PROBLEMA */
+    .pain-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .pain-card {
+      background: var(--card);
+      padding: 30px 28px;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .pain-card:nth-child(even) { border-right: none; }
+    .pain-num {
+      font-size: .72rem; font-weight: 900; letter-spacing: .1em;
+      color: var(--blue); text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .pain-card h3 { font-size: .98rem; color: var(--white); margin-bottom: 8px; font-weight: 700; }
+    .pain-card p { font-size: .87rem; color: var(--muted); line-height: 1.6; }
+
+    /* CURRÍCULO */
+    .curriculum { background: var(--dark); }
+    .modules { display: flex; flex-direction: column; gap: 12px; }
+    .module {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .module-header {
+      display: flex; align-items: center; gap: 18px;
+      padding: 20px 26px;
+    }
+    .mod-num {
+      width: 36px; height: 36px; border-radius: 6px; flex-shrink: 0;
+      background: rgba(26,110,255,.12);
+      border: 1px solid rgba(26,110,255,.25);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 900; font-size: .85rem; color: var(--blue-light);
+    }
+    .mod-info h3 { font-size: 1rem; color: var(--white); font-weight: 700; }
+    .mod-info p { font-size: .82rem; color: var(--muted); margin-top: 2px; }
+    .mod-badge {
+      margin-left: auto; font-size: .7rem; font-weight: 700;
+      padding: 3px 11px; border-radius: 4px; letter-spacing: .05em;
+      text-transform: uppercase; white-space: nowrap;
+    }
+    .b-basic { background: rgba(26,110,255,.1);  color: var(--blue-light); border: 1px solid rgba(26,110,255,.25); }
+    .b-mid   { background: rgba(120,100,255,.1); color: #a89cf7;           border: 1px solid rgba(120,100,255,.25); }
+    .b-adv   { background: rgba(232,184,75,.08); color: var(--gold);       border: 1px solid rgba(232,184,75,.25); }
+    .mod-lessons {
+      border-top: 1px solid var(--border);
+      padding: 14px 26px 18px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 7px;
+    }
+    .lesson {
+      font-size: .84rem; color: var(--muted);
+      padding-left: 14px; position: relative;
+    }
+    .lesson::before {
+      content: '';
+      position: absolute; left: 0; top: 8px;
+      width: 5px; height: 1px;
+      background: var(--blue);
+    }
+
+    /* PARA QUEM É */
+    .for-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
+    .for-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 28px 24px;
+    }
+    .for-card-tag {
+      font-size: .68rem; font-weight: 800; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--blue);
+      margin-bottom: 10px;
+    }
+    .for-card h3 { font-size: .97rem; color: var(--white); margin-bottom: 8px; font-weight: 700; }
+    .for-card p { font-size: .85rem; color: var(--muted); }
+
+    /* TESTEMUNHOS */
+    .testimonials { background: var(--dark); }
+    .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+    .testi-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 28px;
+    }
+    .testi-stars {
+      display: flex; gap: 3px; margin-bottom: 16px;
+    }
+    .star {
+      width: 14px; height: 14px;
+      background: var(--gold);
+      clip-path: polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
+    }
+    .testi-card blockquote {
+      font-size: .93rem; color: var(--text);
+      line-height: 1.7; margin-bottom: 22px;
+      border: none; padding: 0;
+      font-style: normal;
+    }
+    .testi-author { display: flex; align-items: center; gap: 12px; }
+    .testi-initial {
+      width: 38px; height: 38px; border-radius: 6px;
+      background: rgba(26,110,255,.12);
+      border: 1px solid rgba(26,110,255,.2);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 900; font-size: .95rem; color: var(--blue-light);
+      flex-shrink: 0;
+    }
+    .testi-info strong { display: block; font-size: .9rem; color: var(--white); }
+    .testi-info span { font-size: .78rem; color: var(--muted); }
+
+    /* BÓNUS */
+    .bonus-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+    .bonus-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-top: 2px solid var(--blue);
+      border-radius: 10px;
+      padding: 24px;
+    }
+    .bonus-num {
+      font-size: .68rem; font-weight: 900; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--blue-light); margin-bottom: 10px;
+    }
+    .bonus-card h3 { font-size: .97rem; color: var(--white); margin-bottom: 8px; font-weight: 700; }
+    .bonus-card p { font-size: .85rem; color: var(--muted); line-height: 1.6; }
+
+    /* PRICING */
+    .pricing { background: var(--dark); }
+    .price-wrap { max-width: 500px; margin: 0 auto; }
+    .price-box {
+      background: var(--card);
+      border: 1px solid rgba(26,110,255,.4);
+      border-radius: 14px;
+      padding: 44px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .price-box::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--blue-light), var(--blue-dark));
+    }
+    .price-top-tag {
+      position: absolute; top: 16px; right: -28px;
+      background: var(--gold); color: #000;
+      font-size: .65rem; font-weight: 900;
+      letter-spacing: .08em; text-transform: uppercase;
+      padding: 5px 44px;
+      transform: rotate(45deg);
+    }
+    .price-type {
+      font-size: .72rem; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .price-value {
+      font-size: 3.6rem; font-weight: 900;
+      color: var(--white); line-height: 1;
+    }
+    .price-value sup {
+      font-size: 1.4rem; vertical-align: super;
+      line-height: 1; color: var(--muted);
+    }
+    .price-detail {
+      font-size: .85rem; color: var(--muted);
+      margin: 8px 0 32px;
+    }
+    .price-list {
+      list-style: none; text-align: left;
+      display: flex; flex-direction: column; gap: 12px;
+      margin-bottom: 32px;
+    }
+    .price-list li {
+      font-size: .93rem; color: var(--text);
+      display: flex; align-items: flex-start; gap: 10px;
+    }
+    .price-list li::before {
+      content: '';
+      display: block; flex-shrink: 0;
+      width: 16px; height: 16px; margin-top: 3px;
+      border-radius: 50%;
+      background: rgba(26,110,255,.15);
+      border: 1.5px solid rgba(26,110,255,.4);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='8' viewBox='0 0 10 8'%3E%3Cpath d='M1 4l2.5 2.5L9 1' stroke='%234D94FF' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    .price-secure {
+      margin-top: 20px;
+      font-size: .78rem; color: var(--muted);
+      letter-spacing: .02em;
+    }
+
+    /* FAQ */
+    .faq-list { max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; gap: 8px; }
+    details {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px; overflow: hidden;
+    }
+    details summary {
+      padding: 18px 22px; cursor: pointer;
+      font-weight: 700; font-size: .95rem; color: var(--white);
+      list-style: none;
+      display: flex; justify-content: space-between; align-items: center;
+      user-select: none;
+    }
+    details summary::-webkit-details-marker { display: none; }
+    details summary::after {
+      content: '+';
+      font-size: 1.3rem; font-weight: 300;
+      color: var(--blue-light); flex-shrink: 0; margin-left: 12px;
+    }
+    details[open] summary::after { content: '−'; }
+    details .faq-body {
+      padding: 0 22px 18px;
+      font-size: .9rem; color: var(--muted); line-height: 1.75;
+    }
+
+    /* FINAL CTA */
+    .final-cta {
+      padding: 96px 0;
+      text-align: center;
+      background: var(--black);
+      border-top: 1px solid var(--border);
+    }
+    .final-cta h2 { font-size: clamp(1.7rem, 3vw, 2.5rem); color: var(--white); margin-bottom: 14px; }
+    .final-cta p { font-size: 1rem; color: var(--muted); max-width: 500px; margin: 0 auto 32px; }
+
+    /* FOOTER */
+    footer {
+      background: var(--dark);
+      border-top: 1px solid var(--border);
+      padding: 28px 0; text-align: center;
+    }
+    footer p { font-size: .78rem; color: var(--muted); }
+
+    /* RESPONSIVE */
+    @media (max-width: 640px) {
+      .hero-stats { gap: 28px; }
+      .mod-lessons { grid-template-columns: 1fr; }
+      .price-box { padding: 32px 20px; }
+      .nav-btn { display: none; }
+      .topic-item { padding: 4px 16px; border-right: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="container nav-inner">
+    <div class="logo">
+      <!-- NAV LOGO -->
+      <svg viewBox="0 0 190 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- N icon -->
+        <polygon points="0,32 0,8 6,8 18,24 18,8 24,8 24,32 18,32 6,16 6,32" fill="url(#navPurple)"/>
+        <polygon points="10,8 16,8 24,20 24,8 30,8 30,32 24,32 16,20 16,32 10,32" fill="url(#navPurple)" opacity="0.5"/>
+        <defs>
+          <linearGradient id="navPurple" x1="0" y1="0" x2="30" y2="40" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#4D94FF"/>
+            <stop offset="100%" stop-color="#0A3AFF"/>
+          </linearGradient>
+        </defs>
+        <!-- ETWORKING text -->
+        <text x="36" y="22" font-family="'Segoe UI',system-ui,sans-serif" font-weight="900" font-size="15" fill="#FFFFFF" letter-spacing="-0.3">ETWORKING</text>
+        <!-- MASTER text -->
+        <text x="36" y="36" font-family="'Segoe UI',system-ui,sans-serif" font-weight="900" font-size="12" fill="#4D94FF" letter-spacing="2">MASTER</text>
+      </svg>
+    </div>
+    <a href="#inscricao" class="nav-btn">Inscrever Agora</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <!-- HERO LOGO -->
+    <div class="hero-logo">
+      <svg viewBox="0 0 320 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="heroN" x1="0" y1="0" x2="56" y2="80" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#4D94FF"/>
+            <stop offset="100%" stop-color="#0A3AFF"/>
+          </linearGradient>
+          <linearGradient id="heroNShade" x1="0" y1="0" x2="56" y2="80" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#1A6EFF" stop-opacity="0.55"/>
+            <stop offset="100%" stop-color="#0A3A8A" stop-opacity="0.55"/>
+          </linearGradient>
+        </defs>
+        <!-- Geometric N icon -->
+        <!-- Left bar -->
+        <polygon points="2,70 2,10 14,10 14,48 42,10 56,10 56,70 44,70 44,32 16,70" fill="url(#heroN)"/>
+        <!-- Inner shadow slice -->
+        <polygon points="14,10 26,10 14,30" fill="url(#heroNShade)"/>
+        <polygon points="44,70 32,70 44,50" fill="url(#heroNShade)"/>
+        <!-- ETWORKING -->
+        <text x="70" y="44" font-family="'Segoe UI Black','Segoe UI',system-ui,sans-serif" font-weight="900" font-size="36" fill="#FFFFFF" letter-spacing="-1">ETWORKING</text>
+        <!-- MASTER -->
+        <text x="72" y="68" font-family="'Segoe UI Black','Segoe UI',system-ui,sans-serif" font-weight="900" font-size="22" fill="#4D94FF" letter-spacing="8">MASTER</text>
+      </svg>
+    </div>
+
+    <h1>
+      <span class="h1-brand">Networking Master</span>, a comunidade feita para quem quer crescer<br>
+      <span class="h1-dim">seja iniciante ou avançado</span>
+    </h1>
+    <p class="hero-sub">
+      É aqui onde as conexões certas viram oportunidades, você aprende, troca e evolui com quem está no jogo, uma comunidade para quem quer subir de nível. Se você entendeu isso, é porque é pra você.
+    </p>
+    <a href="#inscricao" class="btn">Quero Acesso ao Curso</a>
+    <p class="hero-note">Acesso imediato após pagamento &middot; Suporte incluído &middot; Pagamento único</p>
+
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <strong>8</strong>
+        <span>Módulos do básico ao avançado</span>
+      </div>
+      <div class="hero-stat">
+        <strong>50+</strong>
+        <span>Aulas com aplicação prática</span>
+      </div>
+      <div class="hero-stat">
+        <strong>0</strong>
+        <span>Experiência necessária para começar</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TÓPICOS BAR -->
+<div class="topics-bar">
+  <div class="container">
+    <div class="topics-bar-label">O que vais aprender</div>
+    <div class="topics-list">
+      <div class="topic-item">Copywriting de Resposta Directa</div>
+      <div class="topic-item">Construção de Ofertas</div>
+      <div class="topic-item">Anúncios que Convertem</div>
+      <div class="topic-item">Email Marketing</div>
+      <div class="topic-item">Funis de Vendas</div>
+    </div>
+  </div>
+</div>
+
+<!-- PROBLEMA -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="label">O Problema</div>
+      <h2>A razão pela qual a maioria das pessoas <span class="hl">não consegue vender</span></h2>
+      <p>Não é o produto. Não é o preço. É a forma como comunicam. Reconheces algum destes cenários?</p>
+    </div>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="pain-num">01</div>
+        <h3>Publicam todos os dias mas ninguém compra</h3>
+        <p>O esforço existe, o conteúdo existe, mas as vendas não aparecem porque a mensagem não convida à acção.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-num">02</div>
+        <h3>Não sabem como apresentar uma oferta</h3>
+        <p>O produto é bom mas quando tentam vender, as pessoas ficam em silêncio ou dizem que vão pensar.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-num">03</div>
+        <h3>Gastam em anúncios sem retorno</h3>
+        <p>O orçamento vai embora, os clientes não aparecem. O problema quase sempre está na mensagem, não no produto.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-num">04</div>
+        <h3>Copiam concorrentes sem entender o porquê</h3>
+        <p>Usam os mesmos textos e estratégias mas sem compreender a estrutura — e por isso os resultados não aparecem.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-num">05</div>
+        <h3>Falam com toda a gente e convencem ninguém</h3>
+        <p>A mensagem é genérica, tenta chegar a todos e por isso não ressoa com nenhum cliente específico.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-num">06</div>
+        <h3>Seguem tendências sem uma base sólida</h3>
+        <p>Trocam de técnica em técnica sem nunca dominarem os princípios que realmente fazem uma mensagem converter.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CURRÍCULO -->
+<section class="section curriculum">
+  <div class="container">
+    <div class="section-header">
+      <div class="label">Conteúdo do Curso</div>
+      <h2>Um caminho estruturado, <span class="hl">do início ao fim</span></h2>
+      <p>Cada módulo foi construído sobre o anterior. Não saltas etapas — constróis uma base que dura.</p>
+    </div>
+    <div class="modules">
+
+      <div class="module">
+        <div class="module-header">
+          <div class="mod-num">01</div>
+          <div class="mod-info">
+            <h3>Fundamentos do Direct Response</h3>
+            <p>Percebe exactamente como e porquê o direct response funciona</p>
+          </div>
+          <span class="mod-badge b-basic">Básico</span>
+        </div>
+        <div class="mod-lessons">
+          <div class="lesson">O que é Direct Response e como difere do marketing de marca</div>
+          <div class="lesson">Os 5 princípios que toda mensagem de vendas precisa de ter</div>
+          <div class="lesson">Psicologia do consumidor aplicada à comunicação directa</div>
+          <div class="lesson">Como pensar como um profissional de direct response</div>
+        </div>
+      </div>
+
+      <div class="module">
+        <div class="module-header">
+          <div class="mod-num">02</div>
+          <div class="mod-info">
+            <h3>Conhecer o Mercado a Fundo</h3>
+            <p>Descobre exactamente o que o teu cliente quer ouvir</p>
+          </div>
+          <span class="mod-badge b-basic">Básico</span>
+        </div>
+        <div class="mod-lessons">
+          <div class="lesson">Como identificar a dor real do teu cliente ideal</div>
+          <div class="lesson">Pesquisa de mercado que revela o que a concorrência ignora</div>
+          <div class="lesson">Construção do perfil de cliente com precisão</div>
+          <div class="lesson">Como usar as palavras do próprio cliente na tua mensagem</div>
+        </div>
+      </div>
+
+      <div class="module">
+        <div class="module-header">
+          <div class="mod-num">03</div>
+          <div class="mod-info">
+            <h3>Copywriting de Alta Conversão</h3>
+            <p>Escreve textos que geram resposta e acção imediata</p>
+          </div>
+          <span class="mod-badge b-mid">Intermédio</span>
+        </div>
+        <div class="mod-lessons">
+          <div class="lesson">Estruturas de copy que convertem (PAS, AIDA, BAB e outras)</div>
+          <div class="lesson">Como criar títulos que param o scroll</div>
+          <div class="lesson">O lead — como abrir uma mensagem para que ninguém a feche</div>
+          <div class="lesson">Storytelling aplicado às vendas</div>
+        </div>
+      </div>
+
+      <div class="module">
+        <div class="module-header">
+          <div class="mod-num">04</div>
+          <div class="mod-info">
+            <h3>Construção de Ofertas</h3>
+            <p>Transforma o teu produto numa proposta que as pessoas precisam de aceitar</p>
+          </div>
+          <span class="mod-badge b-mid">Intermédio</span>
+        </div>
+        <div class="mod-lessons">
+          <div class="lesson">A diferença entre produto e oferta</div>
+          <div class="lesson">Como empilhar valor e tornar o preço óbvio</div>
+          <div class="lesson">Bónus que aumentam a conversão sem reduzir a margem</div>
+          <div class="lesson">Garantias como ferramenta para eliminar objecções</div>
+        </div>
+      </div>
+
+      <div class="module">
+        <div class="module-header">
+          <div class="mod-num">05</div>
+          <div class="mod-info">
+            <h3>Anúncios com Retorno Real</h3>
+            <p>Cria anúncios pagos e orgânicos construídos para converter</p>
+          </div>
+          <span class="mod-badge b-mid">Intermédio</span>
+        </div>
+        <div class="mod-lessons">
+          <div class="lesson">Estrutura de um anúncio de resposta directa</div>
+          <div class="lesson">Copy para Facebook, Instagram e WhatsApp</div>
+          <div class="lesson">Como testar anúncios sem desperdiçar orçamento</div>
+          <div class="lesson">Retargeting e mensagens para quem já te conhece</div>
+        </div>
+      </div>
+
+      <div class="module">
+        <div class="module-header">
+          <div class="mod-num">06</div>
+          <div class="mod-info">
+            <h3>Email Marketing e Sequências de Venda</h3>
+            <p>Constrói um sistema de comunicação que vende de forma consistente</p>
+          </div>
+          <span class="mod-badge b-adv">Avançado</span>
+        </div>
+        <div class="mod-lessons">
+          <div class="lesson">Como construir uma lista de email que responde</div>
+          <div class="lesson">Sequência de boas-vindas que gera confiança e venda</div>
+          <div class="lesson">Emails de seguimento para quem ainda não decidiu</div>
+          <div class="lesson">Campanhas de lançamento estruturadas</div>
+        </div>
+      </div>
+
+      <div class="module">
+        <div class="module-header">
+          <div class="mod-num">07</div>
+          <div class="mod-info">
+            <h3>Funis de Venda Completos</h3>
+            <p>Cria sistemas automáticos de captação e conversão</p>
+          </div>
+          <span class="mod-badge b-adv">Avançado</span>
+        </div>
+        <div class="mod-lessons">
+          <div class="lesson">Tipos de funis e quando aplicar cada um</div>
+          <div class="lesson">Páginas de captura que convertem visitantes em contactos</div>
+          <div class="lesson">Páginas de venda — estrutura completa</div>
+          <div class="lesson">Order bumps, upsells e maximização de valor por cliente</div>
+        </div>
+      </div>
+
+      <div class="module">
+        <div class="module-header">
+          <div class="mod-num">08</div>
+          <div class="mod-info">
+            <h3>Escala e Estratégia Avançada</h3>
+            <p>Aumenta os resultados e consolida a tua posição no mercado</p>
+          </div>
+          <span class="mod-badge b-adv">Avançado</span>
+        </div>
+        <div class="mod-lessons">
+          <div class="lesson">Análise de métricas e optimização contínua</div>
+          <div class="lesson">Como escalar o que já está a funcionar</div>
+          <div class="lesson">Parcerias e estratégias de afiliados</div>
+          <div class="lesson">Construção de autoridade e posicionamento de mercado</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PARA QUEM É -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="label">Para Quem É</div>
+      <h2>Este curso foi criado para <span class="hl">pessoas como tu</span></h2>
+    </div>
+    <div class="for-grid">
+      <div class="for-card">
+        <div class="for-card-tag">Perfil 01</div>
+        <h3>Empreendedor que está a começar</h3>
+        <p>Queres vender mas não sabes como comunicar o que o teu produto vale de verdade.</p>
+      </div>
+      <div class="for-card">
+        <div class="for-card-tag">Perfil 02</div>
+        <h3>Dono de negócio com produto mas sem clientes suficientes</h3>
+        <p>Já tens o que vender. Precisas de aprender a chegar às pessoas certas com a mensagem certa.</p>
+      </div>
+      <div class="for-card">
+        <div class="for-card-tag">Perfil 03</div>
+        <h3>Quem quer oferecer serviços de copy</h3>
+        <p>Precisas de uma base técnica sólida para criar trabalho que traz resultados mensuráveis aos clientes.</p>
+      </div>
+      <div class="for-card">
+        <div class="for-card-tag">Perfil 04</div>
+        <h3>Criador de conteúdo com audiência mas sem monetização</h3>
+        <p>Tens atenção das pessoas. Este curso ensina-te a transformar essa atenção em receita real.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTEMUNHOS -->
+<section class="section testimonials">
+  <div class="container">
+    <div class="section-header">
+      <div class="label">Resultados</div>
+      <h2>O que dizem quem já <span class="hl">passou pelo curso</span></h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-stars">
+          <div class="star"></div><div class="star"></div><div class="star"></div>
+          <div class="star"></div><div class="star"></div>
+        </div>
+        <blockquote>
+          "Ficava horas a escrever textos que ninguém lia. Depois de aplicar o que aprendi no módulo 3, as minhas primeiras mensagens de venda geraram resposta em menos de dois dias."
+        </blockquote>
+        <div class="testi-author">
+          <div class="testi-initial">M</div>
+          <div class="testi-info">
+            <strong>Marcos Tembe</strong>
+            <span>Empreendedor Digital, Maputo</span>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">
+          <div class="star"></div><div class="star"></div><div class="star"></div>
+          <div class="star"></div><div class="star"></div>
+        </div>
+        <blockquote>
+          "Nunca pensei que escrever para vender pudesse ser tão estruturado. O módulo de funis mudou por completo a forma como organizo o meu negócio."
+        </blockquote>
+        <div class="testi-author">
+          <div class="testi-initial">A</div>
+          <div class="testi-info">
+            <strong>Ana Cossa</strong>
+            <span>Coach de Carreira, Beira</span>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">
+          <div class="star"></div><div class="star"></div><div class="star"></div>
+          <div class="star"></div><div class="star"></div>
+        </div>
+        <blockquote>
+          "Gastava dinheiro em anúncios sem resultado nenhum. Depois de perceber a estrutura certa, o custo por cliente caiu bastante. Vale cada metical investido."
+        </blockquote>
+        <div class="testi-author">
+          <div class="testi-initial">R</div>
+          <div class="testi-info">
+            <strong>Rafael Machava</strong>
+            <span>Gestor de E-commerce, Maputo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BÓNUS -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="label">Incluído no Curso</div>
+      <h2>Para além das aulas, recebes também <span class="hl">estes materiais</span></h2>
+    </div>
+    <div class="bonus-grid">
+      <div class="bonus-card">
+        <div class="bonus-num">Material 01</div>
+        <h3>Swipe File de Copy</h3>
+        <p>Colecção com os melhores anúncios, títulos e emails que já provaram funcionar. Prontos a adaptar ao teu contexto.</p>
+      </div>
+      <div class="bonus-card">
+        <div class="bonus-num">Material 02</div>
+        <h3>Templates de Páginas de Venda</h3>
+        <p>Modelos prontos de páginas de captura e venda. Preenches os espaços com o teu contexto e lanças.</p>
+      </div>
+      <div class="bonus-card">
+        <div class="bonus-num">Material 03</div>
+        <h3>Checklist de Oferta</h3>
+        <p>Verifica se a tua oferta tem tudo o que precisa para converter antes de a colocar no mercado.</p>
+      </div>
+      <div class="bonus-card">
+        <div class="bonus-num">Material 04</div>
+        <h3>Comunidade Privada de Alunos</h3>
+        <p>Grupo exclusivo para tirar dúvidas, receber feedback sobre o teu trabalho e fazer conexões com outros alunos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section pricing" id="inscricao">
+  <div class="container">
+    <div class="section-header">
+      <div class="label">Investimento</div>
+      <h2>Acesso completo a tudo <span class="hl">por um único valor</span></h2>
+    </div>
+    <div class="price-wrap">
+      <div class="price-box">
+        <div class="price-top-tag">Melhor Valor</div>
+        <div class="price-type">Acesso Completo e Vitalício</div>
+        <div class="price-value"><sup>MZN</sup> 2.500</div>
+        <div class="price-detail">Pagamento único &middot; Sem mensalidades &middot; Acesso para sempre</div>
+
+        <ul class="price-list">
+          <li>8 módulos completos, do básico ao avançado</li>
+          <li>50+ aulas em vídeo com aplicação directa</li>
+          <li>Swipe File de Copy</li>
+          <li>Templates de Páginas de Venda</li>
+          <li>Checklist de Oferta</li>
+          <li>Acesso à Comunidade Privada</li>
+          <li>Actualizações futuras sem custo adicional</li>
+          <li>Suporte directo via chat</li>
+        </ul>
+
+        <a href="#" class="btn" style="width:100%; display:block; text-align:center;">
+          Quero Entrar Agora — 2.500 MZN
+        </a>
+        <p class="price-secure">Acesso seguro &middot; Confirmação imediata após pagamento</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="label">Perguntas Frequentes</div>
+      <h2>Dúvidas que <span class="hl">costumam aparecer</span></h2>
+    </div>
+    <div class="faq-list">
+
+      <details>
+        <summary>Preciso de experiência em marketing ou vendas para começar?</summary>
+        <div class="faq-body">
+          Não. O curso começa do zero absoluto e avança progressivamente. Se nunca vendeste nada, vais seguir um caminho estruturado até ao nível avançado sem saltar etapas.
+        </div>
+      </details>
+
+      <details>
+        <summary>Serve para qualquer tipo de negócio?</summary>
+        <div class="faq-body">
+          Sim. Os princípios do direct response aplicam-se a produtos físicos, serviços, infoprodutos, negócios locais e e-commerce. As técnicas são sólidas — adaptas ao teu contexto.
+        </div>
+      </details>
+
+      <details>
+        <summary>Quanto tempo leva a ver os primeiros resultados?</summary>
+        <div class="faq-body">
+          Depende do que aplicas. Alunos que implementam imediatamente costumam ver as primeiras respostas na primeira semana. O curso foca-se em aplicação prática, não apenas em teoria.
+        </div>
+      </details>
+
+      <details>
+        <summary>O acesso expira?</summary>
+        <div class="faq-body">
+          Não. O acesso é vitalício. Voltas ao curso sempre que precisares, incluindo todas as actualizações futuras sem custo adicional.
+        </div>
+      </details>
+
+      <details>
+        <summary>Como funciona o suporte?</summary>
+        <div class="faq-body">
+          Tens suporte directo via chat e acesso à comunidade privada onde podes colocar questões, partilhar o teu trabalho e receber feedback do instrutor e dos outros alunos.
+        </div>
+      </details>
+
+      <details>
+        <summary>Como faço o pagamento?</summary>
+        <div class="faq-body">
+          Aceitamos M-Pesa, e-Mola e transferência bancária. Após confirmação do pagamento, o acesso ao curso é liberado imediatamente.
+        </div>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="container">
+    <h2>Cada dia sem esta habilidade é um dia de <span class="hl">vendas perdidas</span></h2>
+    <p>Aprende a comunicar de forma que gera resposta. Entra no Networking Master e começa hoje.</p>
+    <a href="#inscricao" class="btn">Garantir o Meu Acesso</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p>&copy; 2026 Networking Master. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+</body>
+</html>
