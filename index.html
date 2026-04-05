@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Networking Master — Direct Response do Zero ao Avançado</title>
+  <title>Networking Master - Direct Response do Zero ao Avançado</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -67,6 +67,99 @@
     }
     .btn:hover { background: #155cdd; transform: translateY(-1px); }
 
+    /* INSTRUCTOR */
+    .instructor-section { background: var(--black); }
+    .instructor-title {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      color: var(--white); text-transform: uppercase;
+      letter-spacing: .04em; margin-bottom: 20px;
+    }
+    .instructor-sub {
+      font-size: .98rem; color: var(--muted);
+      max-width: none; margin: 0 auto;
+      line-height: 1.8;
+    }
+    .instructor-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px; margin-top: 56px;
+      align-items: start;
+    }
+    @media (max-width: 860px) { .instructor-grid { grid-template-columns: 1fr; } }
+
+    .icard {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      display: flex; flex-direction: column; gap: 18px;
+    }
+    .icard-featured {
+      border-color: rgba(26,110,255,.35);
+      box-shadow: 0 0 32px rgba(26,110,255,.08);
+    }
+    .icard-pill {
+      display: inline-block; align-self: flex-start;
+      background: var(--blue);
+      color: #fff; font-size: .68rem;
+      font-weight: 800; letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: 5px 14px; border-radius: 100px;
+    }
+    .icard-profile { display: flex; align-items: center; gap: 14px; }
+    .icard-avatar {
+      width: 52px; height: 52px; border-radius: 50%; flex-shrink: 0;
+      background: rgba(26,110,255,.12);
+      border: 2px solid rgba(26,110,255,.3);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--blue-light);
+    }
+    .icard-profile-info strong { display: block; font-size: .97rem; color: var(--white); font-weight: 700; }
+    .icard-profile-info span { font-size: .8rem; color: var(--muted); }
+    .icard-stats { display: flex; justify-content: space-between; gap: 8px; }
+    .icard-stat { text-align: center; }
+    .icard-stat strong { display: block; font-size: 1.1rem; font-weight: 900; color: var(--white); }
+    .icard-stat span { font-size: .68rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+    .icard-total { font-size: .82rem; color: var(--muted); text-align: center; border-top: 1px solid var(--border); padding-top: 14px; }
+    .icard-note { font-size: .75rem; color: var(--muted); text-align: center; margin-top: -8px; }
+    .icard-img-placeholder {
+      background: rgba(26,110,255,.05);
+      border: 1px dashed rgba(26,110,255,.2);
+      border-radius: 10px;
+      height: 180px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 10px; color: var(--muted);
+      font-size: .8rem;
+    }
+    .icard-img-sm { height: 120px; }
+    .icard-img-real {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .icard-img-real img {
+      width: 100%; display: block;
+      object-fit: cover;
+    }
+    .icard-body { font-size: .87rem; color: var(--muted); line-height: 1.7; }
+    .icard-btn {
+      display: flex; align-items: center; justify-content: center;
+      gap: 8px; padding: 13px 20px; border-radius: 8px;
+      font-size: .9rem; font-weight: 700;
+      text-decoration: none; cursor: pointer;
+      transition: opacity .2s, transform .15s;
+    }
+    .icard-btn:hover { opacity: .88; transform: translateY(-1px); }
+    .icard-btn-solid {
+      background: var(--blue); color: #fff;
+    }
+    .icard-btn-outline {
+      background: transparent;
+      border: 1.5px solid var(--blue);
+      color: var(--blue-light);
+    }
+
     /* NAV */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -108,7 +201,7 @@
     .hero h1 {
       font-size: clamp(2rem, 4.5vw, 3.4rem);
       color: var(--white);
-      max-width: 860px;
+      max-width: none;
       margin: 0 auto 22px;
       font-weight: 700;
       line-height: 1.18;
@@ -125,10 +218,20 @@
     .hero-sub {
       font-size: 1.05rem;
       color: var(--muted);
-      max-width: 580px;
+      max-width: none;
       margin: 0 auto 38px;
       line-height: 1.75;
     }
+    .hero-badges {
+      display: flex; justify-content: center; align-items: center;
+      gap: 28px; flex-wrap: wrap;
+      margin-top: 20px; margin-bottom: 4px;
+    }
+    .hero-badge {
+      display: flex; align-items: center; gap: 7px;
+      font-size: .88rem; font-weight: 600; color: var(--muted);
+    }
+    .hero-badge svg { color: var(--muted); flex-shrink: 0; }
     .hero-note { margin-top: 14px; font-size: .82rem; color: var(--muted); }
 
     .hero-stats {
@@ -170,7 +273,7 @@
       font-size: clamp(1.75rem, 3.2vw, 2.6rem);
       color: var(--white); margin-bottom: 14px;
     }
-    .section-header p { font-size: 1rem; color: var(--muted); max-width: 520px; margin: 0 auto; }
+    .section-header p { font-size: 1rem; color: var(--muted); max-width: none; margin: 0 auto; }
 
     /* PROBLEMA */
     .pain-grid {
@@ -311,13 +414,33 @@
 
     /* PRICING */
     .pricing { background: var(--dark); }
-    .price-wrap { max-width: 500px; margin: 0 auto; }
+    .pricing .section-header h2 {
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 900; text-transform: uppercase;
+      color: var(--white); line-height: 1.1;
+    }
+    .price-checklist {
+      list-style: none; width: fit-content; max-width: 100%; margin: 0 auto 40px;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .price-checklist li {
+      display: flex; align-items: center; gap: 10px;
+      font-size: .97rem; color: var(--text);
+    }
+    .price-checklist li::before {
+      content: '';
+      display: block; flex-shrink: 0;
+      width: 18px; height: 18px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18'%3E%3Cpolyline points='3 9 7 13 15 5' stroke='%234D94FF' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-size: contain;
+    }
+    .price-wrap { max-width: 440px; margin: 0 auto; }
     .price-box {
       background: var(--card);
-      border: 1px solid rgba(26,110,255,.4);
-      border-radius: 14px;
-      padding: 44px 40px;
-      text-align: center;
+      border: 1px solid rgba(26,110,255,.35);
+      border-radius: 18px;
+      padding: 36px 36px 32px;
+      text-align: left;
       position: relative;
       overflow: hidden;
     }
@@ -326,30 +449,27 @@
       position: absolute; top: 0; left: 0; right: 0; height: 3px;
       background: linear-gradient(90deg, var(--blue-light), var(--blue-dark));
     }
-    .price-top-tag {
-      position: absolute; top: 16px; right: -28px;
-      background: var(--gold); color: #000;
-      font-size: .65rem; font-weight: 900;
-      letter-spacing: .08em; text-transform: uppercase;
-      padding: 5px 44px;
-      transform: rotate(45deg);
-    }
-    .price-type {
-      font-size: .72rem; font-weight: 700; letter-spacing: .12em;
-      text-transform: uppercase; color: var(--muted);
-      margin-bottom: 10px;
+    .price-badge {
+      display: inline-block;
+      background: rgba(26,110,255,.18);
+      border: 1px solid rgba(77,148,255,.4);
+      color: var(--blue-light);
+      font-size: .65rem; font-weight: 800;
+      letter-spacing: .12em; text-transform: uppercase;
+      border-radius: 20px; padding: 3px 12px;
+      margin-bottom: 16px;
     }
     .price-value {
-      font-size: 3.6rem; font-weight: 900;
-      color: var(--white); line-height: 1;
+      font-size: 3.2rem; font-weight: 900;
+      color: var(--white); line-height: 1; margin-bottom: 6px;
     }
     .price-value sup {
-      font-size: 1.4rem; vertical-align: super;
+      font-size: 1.1rem; vertical-align: super;
       line-height: 1; color: var(--muted);
     }
     .price-detail {
-      font-size: .85rem; color: var(--muted);
-      margin: 8px 0 32px;
+      font-size: .82rem; color: var(--muted);
+      margin-bottom: 28px; line-height: 1.6;
     }
     .price-list {
       list-style: none; text-align: left;
@@ -377,7 +497,95 @@
       letter-spacing: .02em;
     }
 
-    /* FAQ */
+    /* TRUST CARDS */
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    @media (max-width: 860px) { .trust-grid { grid-template-columns: 1fr; } }
+    .trust-card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 32px 28px;
+      position: relative;
+      overflow: hidden;
+      display: flex; flex-direction: column; gap: 14px;
+      border: 1px solid var(--border);
+      text-align: center;
+    }
+    .trust-label {
+      font-size: .7rem; font-weight: 700;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--muted);
+    }
+    .trust-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      margin: 0 auto;
+    }
+    .trust-icon {
+      width: 52px; height: 52px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid;
+      margin: 0 auto;
+    }
+    .trust-card h3 {
+      font-size: 1rem; font-weight: 800;
+      color: var(--white); text-transform: uppercase;
+      line-height: 1.3;
+    }
+    .trust-card p {
+      font-size: .88rem; color: var(--muted); line-height: 1.7;
+    }
+    .trust-btn {
+      display: inline-block; margin-top: 8px;
+      background: #22c55e; color: #fff;
+      font-size: .8rem; font-weight: 800; letter-spacing: .06em;
+      padding: 10px 24px; border-radius: 8px;
+      text-decoration: none;
+    }
+    .trust-glow {
+      position: absolute; bottom: -40px; left: 50%;
+      transform: translateX(-50%);
+      width: 180px; height: 80px;
+      border-radius: 50%; filter: blur(40px); opacity: .35;
+    }
+    .trust-glow-purple { background: #a855f7; }
+    .trust-glow-red    { background: #ef4444; }
+    .trust-glow-green  { background: #22c55e; }
+    .trust-purple { border-color: rgba(168,85,247,.25); }
+    .trust-red    { border-color: rgba(239,68,68,.25); }
+    .trust-green  { border-color: rgba(34,197,94,.25); }
+
+    /* FAQ GRID */
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    @media (max-width: 900px) { .faq-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 540px) { .faq-grid { grid-template-columns: 1fr; } }
+    .faq-card {
+      background: var(--card);
+      padding: 28px 24px;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .faq-card-icon {
+      color: var(--muted);
+    }
+    .faq-card h4 {
+      font-size: .95rem; font-weight: 700;
+      color: var(--white); line-height: 1.3;
+    }
+    .faq-card p {
+      font-size: .83rem; color: var(--muted); line-height: 1.7;
+    }
+
+    /* FAQ (legacy accordion - kept for reference) */
     .faq-list { max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; gap: 8px; }
     details {
       background: var(--card);
@@ -415,11 +623,676 @@
 
     /* FOOTER */
     footer {
-      background: var(--dark);
+      background: var(--black);
       border-top: 1px solid var(--border);
-      padding: 28px 0; text-align: center;
+      padding: 36px 0; text-align: center;
     }
-    footer p { font-size: .78rem; color: var(--muted); }
+    footer .footer-brand {
+      font-size: .85rem; font-weight: 800;
+      color: var(--white); letter-spacing: .04em;
+      margin-bottom: 8px;
+    }
+    footer p { font-size: .75rem; color: var(--muted); line-height: 1.7; }
+
+    /* O QUE LEVAS */
+    .whatsincluded { background: var(--dark); }
+    .included-title {
+      font-size: clamp(1.3rem, 2.8vw, 2rem);
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      line-height: 1.25;
+      text-align: center;
+    }
+    .included-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 12px;
+    }
+    @media (max-width: 860px) { .included-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 520px) { .included-grid { grid-template-columns: 1fr; } }
+
+    .inc-card {
+      border-radius: 14px;
+      overflow: hidden;
+      border: none;
+      background: transparent;
+    }
+    .inc-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      border-radius: 14px;
+    }
+
+    /* LEVANTAMENTO DE CAIXA */
+    .caixa-section { background: var(--black); }
+
+    .caixa-top {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      margin-bottom: 52px;
+    }
+    @media (max-width: 760px) { .caixa-top { grid-template-columns: 1fr; gap: 24px; } }
+
+    .caixa-title {
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.05;
+      text-transform: uppercase;
+    }
+    .caixa-hl { color: var(--blue-light); }
+
+    .caixa-desc {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .caixa-banner {
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 56px;
+      border: 1px solid var(--border);
+    }
+    .caixa-banner img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .caixa-tabs-wrap {
+      border-top: 1px solid var(--border);
+      padding-top: 0;
+    }
+    .caixa-tabs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-bottom: 1px solid var(--border);
+    }
+    @media (max-width: 640px) { .caixa-tabs { grid-template-columns: 1fr; } }
+
+    .caixa-tab {
+      background: none;
+      border: none;
+      border-top: 3px solid transparent;
+      padding: 20px 16px;
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      cursor: pointer;
+      text-align: left;
+      opacity: .5;
+      transition: opacity .2s, color .2s, border-color .2s;
+      line-height: 1.4;
+    }
+    .caixa-tab.active {
+      color: var(--white);
+      opacity: 1;
+      border-top-color: var(--blue);
+    }
+    .caixa-tab:hover:not(.active) { opacity: .75; }
+
+    .caixa-tab-content { padding: 36px 0 0; }
+    .caixa-panel { display: none; }
+    .caixa-panel.active { display: block; }
+    .caixa-panel h3 {
+      font-size: clamp(1.1rem, 2vw, 1.5rem);
+      font-weight: 900;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: .03em;
+      margin-bottom: 16px;
+    }
+    .caixa-panel p {
+      font-size: .95rem;
+      color: var(--muted);
+      line-height: 1.75;
+      max-width: none;
+    }
+
+    .caixa-cta-btn {
+      display: inline-block;
+      background: transparent;
+      border: 1.5px solid var(--white);
+      color: var(--white);
+      font-size: .9rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 16px 44px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: background .2s, color .2s;
+    }
+    .caixa-cta-btn:hover {
+      background: var(--white);
+      color: var(--black);
+    }
+
+    /* MÓDULOS DO CURSO */
+    .modulos-section { background: var(--dark); overflow: hidden; }
+    .modulos-title {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+    .modulos-sub {
+      font-size: .95rem;
+      color: var(--muted);
+      max-width: none;
+      margin: 0 auto;
+      line-height: 1.75;
+    }
+    .modulos-scroll-wrap {
+      overflow-x: auto;
+      padding: 12px 24px 32px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .modulos-scroll-wrap::-webkit-scrollbar { display: none; }
+    .modulos-track {
+      display: flex;
+      gap: 16px;
+      width: max-content;
+      padding: 0 max(24px, calc((100vw - 1080px)/2));
+    }
+    .mcard {
+      width: 220px;
+      min-height: 320px;
+      border-radius: 18px;
+      background: linear-gradient(145deg, #071a4a 0%, #040d25 60%, #020810 100%);
+      border: 1px solid rgba(26,110,255,.2);
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      flex-shrink: 0;
+      position: relative;
+      overflow: hidden;
+      transition: transform .2s, border-color .2s;
+    }
+    .mcard::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 30% 20%, rgba(26,110,255,.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .mcard:hover { transform: translateY(-4px); border-color: rgba(26,110,255,.5); }
+    .mcard-num {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.45);
+    }
+    .mcard-num span {
+      color: var(--blue-light);
+      font-weight: 900;
+    }
+    .mcard img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 18px;
+    }
+
+    /* RESULTADOS */
+    .resultados-section { background: var(--black); overflow: hidden; }
+    .resultados-title {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      font-weight: 900;
+    }
+    .resultados-sub {
+      font-size: .97rem;
+      color: var(--muted);
+      max-width: none;
+      margin: 0 auto;
+      line-height: 1.75;
+    }
+    .resultados-scroll-wrap {
+      overflow-x: auto;
+      padding: 12px 24px 32px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .resultados-scroll-wrap::-webkit-scrollbar { display: none; }
+    .resultados-track {
+      display: flex;
+      gap: 14px;
+      width: max-content;
+      padding: 0 max(24px, calc((100vw - 1080px)/2));
+    }
+    .res-card {
+      width: 180px;
+      height: 320px;
+      flex-shrink: 0;
+      border-radius: 14px;
+      overflow: hidden;
+      background: var(--card);
+      border: 1px solid var(--border);
+    }
+    .res-card img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .res-placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px dashed rgba(26,110,255,.25);
+      background: var(--card);
+    }
+    .res-placeholder span {
+      font-size: .65rem;
+      color: var(--muted);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 0 12px;
+    }
+
+    /* VALE A PENA */
+    .valepena-section { background: var(--dark); }
+    .valepena-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    @media (max-width: 860px) { .valepena-wrap { grid-template-columns: 1fr; gap: 48px; } }
+
+    .valepena-title {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 900;
+      color: var(--white);
+      text-transform: uppercase;
+      line-height: 1.08;
+      margin-bottom: 28px;
+    }
+    .valepena-hl { color: var(--blue-light); }
+    .valepena-desc {
+      font-size: .97rem;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .valepena-right { position: relative; }
+    .vp-cards {
+      position: relative;
+      height: 260px;
+    }
+    .vp-card {
+      position: absolute;
+      width: 100%;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px 24px;
+      transition: transform .6s ease, opacity .6s ease, top .6s ease;
+      box-shadow: 0 8px 32px rgba(0,0,0,.3);
+    }
+    .vp-card.pos-0 { top: 0;   transform: scale(1)    translateX(0);   opacity: 1;   z-index: 3; }
+    .vp-card.pos-1 { top: 18px; transform: scale(0.96) translateX(18px); opacity: .6;  z-index: 2; }
+    .vp-card.pos-2 { top: 34px; transform: scale(0.92) translateX(34px); opacity: .3;  z-index: 1; }
+
+    .vp-card-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .vp-card-head span {
+      font-size: .75rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .vp-icon {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .vp-icon-blue  { background: rgba(26,110,255,.15); color: var(--blue-light); }
+    .vp-icon-orange { background: rgba(251,146,60,.15); color: #fb923c; }
+    .vp-card-prices {
+      font-size: .95rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+    .vp-card-note {
+      font-size: .82rem;
+      color: var(--muted);
+    }
+
+    /* ANCORAGEM */
+    .vp-anchor {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .vp-anchor-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: .88rem;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .vp-anchor-item { color: var(--muted); }
+    .vp-anchor-val  { color: var(--text); font-weight: 600; }
+    .vp-anchor-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: .88rem;
+      padding-top: 4px;
+    }
+    .vp-anchor-total span:first-child { color: var(--muted); }
+    .vp-anchor-strike {
+      text-decoration: line-through;
+      color: var(--muted);
+      font-weight: 700;
+    }
+    .vp-anchor-price {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(26,110,255,.08);
+      border: 1px solid rgba(26,110,255,.25);
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-top: 4px;
+    }
+    .vp-anchor-price span:first-child {
+      font-size: .85rem;
+      color: var(--muted);
+    }
+    .vp-anchor-final {
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: var(--blue-light);
+    }
+
+    /* ============================================
+       TIPOGRAFIA — SISTEMA PREMIUM
+    ============================================ */
+
+    /* ── Base global ── */
+    body { font-size: 16px; line-height: 1.7; text-align: justify; text-justify: inter-word; }
+
+    /* ── Elementos centrados — override justify ── */
+    h1, h2, h3, h4 { text-align: center; }
+    nav, footer, .btn, .caixa-cta-btn, .trust-btn,
+    .section-header, .hero, .hero-badges, .hero-note, .hero-stat,
+    .price-badge, .price-value, .price-secure,
+    .trust-card, .trust-label, .trust-dot,
+    .icard-pill, .icard-stats, .icard-stat, .icard-total, .icard-note, .icard-btn,
+    .label, .mcard-num,
+    .footer-brand { text-align: center; }
+
+    /* ── Parágrafos largos — justificados ── */
+    .valepena-desc,
+    .caixa-desc { text-align: justify; text-justify: inter-word; }
+
+    /* ── Parágrafos em colunas estreitas — alinhados à esquerda ── */
+    .faq-card p, .faq-card h4, .faq-card-icon,
+    .trust-card p,
+    .icard-body, .icard-profile-info,
+    .caixa-panel p, .caixa-panel h3,
+    .price-secure,
+    .hero-note { text-align: left; }
+
+    /* ── Elementos centrados — override ── */
+    .instructor-sub, .modulos-sub, .resultados-sub,
+    .section-header p,
+    .price-checklist, .price-checklist li,
+    .price-detail, .price-box p,
+    .trust-label, .trust-card h3,
+    footer p { text-align: center; }
+
+    .caixa-title, .valepena-title { text-align: left; }
+    .caixa-tab { text-align: left; }
+    .price-box { text-align: left; }
+    .price-box .btn { text-align: center; }
+
+    /* ── Hierarquia de headings ── */
+    h1, h2, h3, h4 { color: var(--white); }
+
+    /* H1 — título principal */
+    h1 {
+      font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+      font-weight: 900;
+      letter-spacing: -.025em;
+      line-height: 1.12;
+    }
+
+    /* H2 — títulos de secção */
+    h2 {
+      font-size: clamp(1.5rem, 3vw, 2.1rem);
+      font-weight: 800;
+      letter-spacing: -.015em;
+      line-height: 1.18;
+    }
+
+    /* H3 — subtítulos de card / painel */
+    h3 {
+      font-size: clamp(.95rem, 1.6vw, 1.15rem);
+      font-weight: 700;
+      letter-spacing: -.01em;
+      line-height: 1.3;
+    }
+
+    /* H4 — labels de card */
+    h4 {
+      font-size: clamp(.875rem, 1.3vw, .9375rem);
+      font-weight: 700;
+      letter-spacing: 0;
+      line-height: 1.35;
+    }
+
+    /* ── Secções ── */
+    .section { padding: 120px 0; }
+
+    .section-header { text-align: center; margin-bottom: 72px; }
+    .section-header h2 {
+      font-size: clamp(1.5rem, 3.2vw, 2.2rem);
+      font-weight: 800;
+      letter-spacing: -.015em;
+      line-height: 1.15;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .section-header p {
+      font-size: .9375rem;
+      color: var(--muted);
+      line-height: 1.75;
+      max-width: none;
+      margin: 0 auto;
+    }
+
+    /* ── HERO ── */
+    .hero { padding: 156px 0 104px; }
+    .hero h1 {
+      font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+      font-weight: 900;
+      letter-spacing: -.025em;
+      line-height: 1.15;
+      margin-bottom: 28px;
+      max-width: none;
+    }
+    .hero-sub {
+      font-size: .9375rem;
+      color: var(--muted);
+      line-height: 1.75;
+      max-width: 720px;
+      margin: 0 auto 40px;
+      text-align: center;
+    }
+    .hero-badge { font-size: .875rem; }
+    .hero-note  { font-size: .8125rem; color: var(--muted); margin-top: 16px; text-align: center; }
+    .hero-stat strong { font-size: 1.75rem; font-weight: 900; }
+    .hero-stat span   { font-size: .75rem; letter-spacing: .02em; }
+
+    /* ── INSTRUCTOR ── */
+    .instructor-title {
+      font-size: clamp(1.5rem, 3.2vw, 2.2rem);
+      font-weight: 800;
+      letter-spacing: -.015em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 22px;
+    }
+    .instructor-sub {
+      font-size: .9375rem;
+      line-height: 1.75;
+      color: var(--muted);
+      max-width: none;
+      margin: 0 auto;
+    }
+    .icard { gap: 20px; }
+    .icard-body            { font-size: .8125rem; line-height: 1.75; }
+    .icard-profile-info strong { font-size: .9375rem; }
+    .icard-profile-info span   { font-size: .75rem; }
+    .icard-stat strong         { font-size: 1.125rem; }
+    .icard-stat span           { font-size: .6875rem; letter-spacing: .09em; }
+
+    /* ── O QUE LEVAS ── */
+    .included-title {
+      font-size: clamp(1.3rem, 2.6vw, 1.75rem);
+      font-weight: 800;
+      letter-spacing: -.01em;
+      line-height: 1.35;
+      margin-bottom: 16px;
+      max-width: none;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ── LEVANTAMENTO DE CAIXA ── */
+    .caixa-title {
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-weight: 900;
+      letter-spacing: -.025em;
+      line-height: 1.05;
+      margin-bottom: 0;
+    }
+    .caixa-desc {
+      font-size: .9375rem;
+      line-height: 1.75;
+      color: var(--muted);
+      max-width: none;
+    }
+    .caixa-panel h3 {
+      font-size: clamp(.95rem, 1.8vw, 1.1875rem);
+      font-weight: 800;
+      letter-spacing: -.01em;
+      margin-bottom: 16px;
+    }
+    .caixa-panel p { font-size: .9375rem; line-height: 1.75; max-width: none; }
+    .caixa-tab     { font-size: .75rem; letter-spacing: .065em; }
+
+    /* ── MÓDULOS ── */
+    .modulos-title {
+      font-size: clamp(1.5rem, 3.2vw, 2.2rem);
+      font-weight: 800;
+      letter-spacing: -.015em;
+      margin-bottom: 14px;
+    }
+    .modulos-sub { font-size: .9375rem; line-height: 1.75; max-width: none; margin: 0 auto; }
+
+    /* ── RESULTADOS ── */
+    .resultados-title {
+      font-size: clamp(1.5rem, 3.2vw, 2.2rem);
+      font-weight: 800;
+      letter-spacing: -.015em;
+      margin-bottom: 14px;
+    }
+    .resultados-sub { font-size: .9375rem; line-height: 1.75; max-width: none; margin: 0 auto; }
+
+    /* ── VALE A PENA ── */
+    .valepena-title {
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-weight: 900;
+      letter-spacing: -.025em;
+      line-height: 1.08;
+      margin-bottom: 28px;
+    }
+    .valepena-desc { font-size: .9375rem; line-height: 1.75; color: var(--muted); max-width: none; }
+
+    /* ── PRICING ── */
+    .pricing .section-header h2 {
+      font-size: clamp(1.5rem, 3.8vw, 2.5rem);
+      font-weight: 900;
+      letter-spacing: -.02em;
+      line-height: 1.12;
+    }
+    .price-badge  { font-size: .625rem; letter-spacing: .14em; }
+    .price-value  { font-size: clamp(2.5rem, 5.5vw, 3.2rem); font-weight: 900; letter-spacing: -.025em; margin-bottom: 10px; }
+    .price-value sup  { font-size: .9375rem; }
+    .price-detail { font-size: .8125rem; line-height: 1.75; margin-bottom: 24px; }
+    .price-checklist  { gap: 12px; max-width: none; }
+    .price-checklist li { font-size: .9375rem; line-height: 1.65; }
+    .price-secure { font-size: .75rem; letter-spacing: .02em; }
+
+    /* ── TRUST CARDS ── */
+    .trust-card    { gap: 12px; padding: 32px 26px; }
+    .trust-card h3 { font-size: .875rem; font-weight: 800; letter-spacing: .04em; line-height: 1.35; margin-bottom: 2px; }
+    .trust-card p  { font-size: .8125rem; line-height: 1.75; }
+    .trust-label   { font-size: .6875rem; letter-spacing: .13em; }
+
+    /* ── FAQ CARDS ── */
+    .faq-card    { padding: 28px 24px; gap: 10px; }
+    .faq-card h4 { font-size: .875rem; font-weight: 800; line-height: 1.35; letter-spacing: -.005em; margin-bottom: 2px; }
+    .faq-card p  { font-size: .8125rem; line-height: 1.75; color: var(--muted); }
+
+    /* ── FOOTER ── */
+    footer .footer-brand { font-size: .875rem; font-weight: 900; letter-spacing: .07em; margin-bottom: 10px; }
+    footer p { font-size: .75rem; line-height: 1.85; color: var(--muted); }
+
+    /* SCROLL REVEAL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      filter: blur(3px);
+      transition:
+        opacity .55s cubic-bezier(.25,.46,.45,.94),
+        transform .55s cubic-bezier(.25,.46,.45,.94),
+        filter .55s cubic-bezier(.25,.46,.45,.94);
+      will-change: opacity, transform, filter;
+    }
+    .reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+    .reveal-delay-1 { transition-delay: .08s; }
+    .reveal-delay-2 { transition-delay: .16s; }
+    .reveal-delay-3 { transition-delay: .24s; }
+    .reveal-delay-4 { transition-delay: .32s; }
 
     /* RESPONSIVE */
     @media (max-width: 640px) {
@@ -429,6 +1302,168 @@
       .nav-btn { display: none; }
       .topic-item { padding: 4px 16px; border-right: none; }
     }
+
+    /* ============================================
+       REFINAMENTO VISUAL PREMIUM
+    ============================================ */
+
+    /* Grid muito subtil no fundo */
+    body {
+      background-image:
+        linear-gradient(rgba(26,110,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(26,110,255,.025) 1px, transparent 1px);
+      background-size: 72px 72px;
+    }
+
+    /* Nav mais refinada */
+    nav {
+      background: rgba(8,9,15,.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(26,110,255,.12);
+    }
+
+    /* Hero — gradiente mais profundo */
+    .hero::after {
+      background:
+        radial-gradient(ellipse 90% 55% at 50% 0%, rgba(26,110,255,.18) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 30% at 20% 80%, rgba(26,110,255,.06) 0%, transparent 60%);
+    }
+    .hero h1 {
+      font-weight: 900;
+      letter-spacing: -.015em;
+    }
+
+    /* Label com ponto de destaque */
+    .label {
+      position: relative;
+      padding-left: 14px;
+    }
+    .label::before {
+      content: '';
+      position: absolute; left: 0; top: 50%;
+      transform: translateY(-50%);
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--blue-light);
+      box-shadow: 0 0 8px rgba(77,148,255,.7);
+    }
+
+    /* Botões — glow mais premium */
+    .btn {
+      box-shadow: 0 0 28px rgba(26,110,255,.45), 0 4px 20px rgba(26,110,255,.3);
+      transition: background .2s, transform .15s, box-shadow .2s;
+    }
+    .btn:hover {
+      background: #155cdd;
+      transform: translateY(-2px);
+      box-shadow: 0 0 48px rgba(26,110,255,.65), 0 8px 32px rgba(26,110,255,.4);
+    }
+
+    /* Section separador subtil */
+    .section {
+      position: relative;
+    }
+    .section::before {
+      content: '';
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 180px; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(26,110,255,.25), transparent);
+    }
+
+    /* Cards instructor — gradiente leve e hover glow */
+    .icard {
+      background: linear-gradient(160deg, #15192600 0%, var(--card) 100%);
+      box-shadow: 0 4px 24px rgba(0,0,0,.3);
+      transition: border-color .3s, box-shadow .3s, transform .2s;
+    }
+    .icard:hover {
+      border-color: rgba(26,110,255,.3);
+      box-shadow: 0 8px 40px rgba(0,0,0,.4), 0 0 24px rgba(26,110,255,.08);
+      transform: translateY(-3px);
+    }
+
+    /* Inc-cards — hover refinado */
+    .inc-card {
+      transition: transform .2s, border-color .25s, box-shadow .25s;
+    }
+    .inc-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(26,110,255,.35);
+      box-shadow: 0 12px 40px rgba(0,0,0,.4), 0 0 20px rgba(26,110,255,.1);
+    }
+
+    /* Caixa banner — fade nas bordas */
+    .caixa-banner {
+      box-shadow: 0 0 60px rgba(0,0,0,.5);
+      border-color: rgba(26,110,255,.15);
+    }
+
+    /* Caixa tab activa — fundo subtil */
+    .caixa-tab.active {
+      background: rgba(26,110,255,.05);
+      color: var(--white);
+    }
+    .caixa-tab {
+      transition: opacity .2s, color .2s, border-color .2s, background .2s;
+    }
+
+    /* Módulos — glow no hover */
+    .mcard:hover {
+      box-shadow: 0 16px 48px rgba(0,0,0,.5), 0 0 28px rgba(26,110,255,.18);
+      border-color: rgba(26,110,255,.55);
+    }
+
+    /* Resultados cards — hover */
+    .res-card {
+      transition: transform .2s, border-color .25s, box-shadow .25s;
+    }
+    .res-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(26,110,255,.3);
+      box-shadow: 0 12px 32px rgba(0,0,0,.4);
+    }
+
+    /* Vale a pena section — glow ambiente */
+    .valepena-section {
+      background: linear-gradient(180deg, var(--dark) 0%, #0b0e16 100%);
+    }
+
+    /* Price box — glow azul ambiente */
+    .price-box {
+      box-shadow: 0 0 80px rgba(26,110,255,.12), 0 8px 40px rgba(0,0,0,.5);
+    }
+    .price-box::after {
+      content: '';
+      position: absolute; bottom: -60px; left: 50%;
+      transform: translateX(-50%);
+      width: 300px; height: 120px;
+      background: rgba(26,110,255,.15);
+      border-radius: 50%; filter: blur(50px);
+      pointer-events: none; z-index: -1;
+    }
+
+    /* FAQ grid — icon azul e hover */
+    .faq-card-icon { color: var(--blue-light); }
+    .faq-card {
+      transition: background .2s;
+    }
+    .faq-card:hover {
+      background: linear-gradient(145deg, #161b27, var(--card));
+    }
+
+    /* Trust cards — reforço glow */
+    .trust-glow { opacity: .4; }
+
+    /* Footer — separador gradiente */
+    footer {
+      background: linear-gradient(180deg, var(--black) 0%, #05060c 100%);
+      border-top: 1px solid rgba(26,110,255,.1);
+    }
+
+    /* Scrollbar global subtil */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--black); }
+    ::-webkit-scrollbar-thumb { background: rgba(26,110,255,.3); border-radius: 10px; }
   </style>
 </head>
 <body>
@@ -454,7 +1489,6 @@
         <text x="36" y="36" font-family="'Segoe UI',system-ui,sans-serif" font-weight="900" font-size="12" fill="#4D94FF" letter-spacing="2">MASTER</text>
       </svg>
     </div>
-    <a href="#inscricao" class="nav-btn">Inscrever Agora</a>
   </div>
 </nav>
 
@@ -494,461 +1528,630 @@
     <p class="hero-sub">
       É aqui onde as conexões certas viram oportunidades, você aprende, troca e evolui com quem está no jogo, uma comunidade para quem quer subir de nível. Se você entendeu isso, é porque é pra você.
     </p>
-    <a href="#inscricao" class="btn">Quero Acesso ao Curso</a>
+    <a href="https://checkout.escalepay.com/8162455" target="_blank" class="btn">Quero Acesso ao Curso</a>
+
+    <div class="hero-badges">
+      <div class="hero-badge">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        <span>22 Módulos</span>
+      </div>
+      <div class="hero-badge">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
+        <span>+30 Aulas</span>
+      </div>
+      <div class="hero-badge">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <span>128+ Alunos</span>
+      </div>
+    </div>
+
     <p class="hero-note">Acesso imediato após pagamento &middot; Suporte incluído &middot; Pagamento único</p>
 
-    <div class="hero-stats">
-      <div class="hero-stat">
-        <strong>8</strong>
-        <span>Módulos do básico ao avançado</span>
-      </div>
-      <div class="hero-stat">
-        <strong>50+</strong>
-        <span>Aulas com aplicação prática</span>
-      </div>
-      <div class="hero-stat">
-        <strong>0</strong>
-        <span>Experiência necessária para começar</span>
-      </div>
-    </div>
   </div>
 </section>
 
-<!-- TÓPICOS BAR -->
-<div class="topics-bar">
-  <div class="container">
-    <div class="topics-bar-label">O que vais aprender</div>
-    <div class="topics-list">
-      <div class="topic-item">Copywriting de Resposta Directa</div>
-      <div class="topic-item">Construção de Ofertas</div>
-      <div class="topic-item">Anúncios que Convertem</div>
-      <div class="topic-item">Email Marketing</div>
-      <div class="topic-item">Funis de Vendas</div>
-    </div>
-  </div>
-</div>
 
-<!-- PROBLEMA -->
-<section class="section">
+<!-- COM QUEM VAI APRENDER -->
+<section class="section instructor-section">
   <div class="container">
     <div class="section-header">
-      <div class="label">O Problema</div>
-      <h2>A razão pela qual a maioria das pessoas <span class="hl">não consegue vender</span></h2>
-      <p>Não é o produto. Não é o preço. É a forma como comunicam. Reconheces algum destes cenários?</p>
+      <h2 class="instructor-title">COM QUEM VOCÊ VAI APRENDER?</h2>
+      <p class="instructor-sub">
+        Comigo. E faço questão que seja assim.
+        Não terceirizo aulas. Não trago "guru convidado".
+        Sou eu em cada call, cada módulo, te mostrando do zero à escala, do mesmo jeito que faço no YouTube, onde me tornei uma das maiores referências em Direct Response em Moçambique.
+        A diferença é que aqui dentro eu vou mais fundo. Sem filtro. Sem limitações. Sem medo de bloqueio.
+        Aqui você aprende o que realmente funciona.
+      </p>
     </div>
-    <div class="pain-grid">
-      <div class="pain-card">
-        <div class="pain-num">01</div>
-        <h3>Publicam todos os dias mas ninguém compra</h3>
-        <p>O esforço existe, o conteúdo existe, mas as vendas não aparecem porque a mensagem não convida à acção.</p>
+
+    <div class="instructor-grid">
+
+      <!-- CARD 1 — Destaque / Foto -->
+      <div class="icard icard-featured">
+        <div class="icard-pill">Player em Destaque</div>
+        <div class="icard-img-real">
+          <img src="assets/placa.jpg" alt="Prémio VTurb 500 mil plays">
+        </div>
+        <p class="icard-body">
+          Esses são resultados reais, construídos do zero, sem atalhos. Dentro da comunidade vou mostrar-te exactamente o que fiz para chegar aqui, e como podes replicar ou até superar esses números com as estratégias certas de Direct Response.
+        </p>
+        <a href="https://www.instagram.com/bruno_dramusse" target="_blank" class="icard-btn icard-btn-solid">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          Ver o meu perfil
+        </a>
       </div>
-      <div class="pain-card">
-        <div class="pain-num">02</div>
-        <h3>Não sabem como apresentar uma oferta</h3>
-        <p>O produto é bom mas quando tentam vender, as pessoas ficam em silêncio ou dizem que vão pensar.</p>
+
+      <!-- CARD 2 — YouTube -->
+      <div class="icard">
+        <div class="icard-pill">Referência em Direct Response</div>
+        <div class="icard-profile">
+          <div class="icard-avatar">
+            <img src="assets/youtube1.jpg" alt="Bruno Dramusse" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
+          </div>
+          <div class="icard-profile-info">
+            <strong>Bruno Dramusse</strong>
+            <span>@bruno_dramusse</span>
+          </div>
+        </div>
+        <div class="icard-stats">
+          <div class="icard-stat">
+            <strong>8,5K+</strong>
+            <span>Seguidores</span>
+          </div>
+          <div class="icard-stat">
+            <strong>180,7M</strong>
+            <span>Views</span>
+          </div>
+          <div class="icard-stat">
+            <strong>10+</strong>
+            <span>Vídeos</span>
+          </div>
+        </div>
+        <div class="icard-note">Seguidores em todas as redes sociais</div>
+        <div class="icard-total">128+ alunos formados</div>
+        <a href="https://www.youtube.com/@bruno_dramusse" target="_blank" class="icard-btn icard-btn-solid">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"/></svg>
+          Inscreva-se
+        </a>
       </div>
-      <div class="pain-card">
-        <div class="pain-num">03</div>
-        <h3>Gastam em anúncios sem retorno</h3>
-        <p>O orçamento vai embora, os clientes não aparecem. O problema quase sempre está na mensagem, não no produto.</p>
+
+      <!-- CARD 3 — Resultados -->
+      <div class="icard">
+        <div class="icard-pill">Resultados Comprovados</div>
+        <div class="icard-img-real">
+          <img src="assets/resultado.jpg" alt="Resultados de faturamento">
+        </div>
+        <p class="icard-body">
+          Muitas das melhores conexões e oportunidades que surgiram na minha carreira vieram de dentro da comunidade, de quem eu enxerguei sendo consistente e dedicado. Você também terá acesso a calls com grandes players do mercado, trazendo visão prática e oportunidades reais.
+        </p>
+        <a href="https://checkout.escalepay.com/8162455" target="_blank" class="icard-btn icard-btn-solid">
+          Quero Entrar &rarr;
+        </a>
       </div>
-      <div class="pain-card">
-        <div class="pain-num">04</div>
-        <h3>Copiam concorrentes sem entender o porquê</h3>
-        <p>Usam os mesmos textos e estratégias mas sem compreender a estrutura — e por isso os resultados não aparecem.</p>
-      </div>
-      <div class="pain-card">
-        <div class="pain-num">05</div>
-        <h3>Falam com toda a gente e convencem ninguém</h3>
-        <p>A mensagem é genérica, tenta chegar a todos e por isso não ressoa com nenhum cliente específico.</p>
-      </div>
-      <div class="pain-card">
-        <div class="pain-num">06</div>
-        <h3>Seguem tendências sem uma base sólida</h3>
-        <p>Trocam de técnica em técnica sem nunca dominarem os princípios que realmente fazem uma mensagem converter.</p>
-      </div>
+
     </div>
   </div>
 </section>
 
-<!-- CURRÍCULO -->
-<section class="section curriculum">
+<!-- O QUE LEVAS -->
+<section class="section whatsincluded">
   <div class="container">
     <div class="section-header">
-      <div class="label">Conteúdo do Curso</div>
-      <h2>Um caminho estruturado, <span class="hl">do início ao fim</span></h2>
-      <p>Cada módulo foi construído sobre o anterior. Não saltas etapas — constróis uma base que dura.</p>
+      <h2 class="included-title">SEM ENROLAÇÃO, VAMOS AO QUE INTERESSA.<br>ENTRANDO PARA O <span class="hl">NETWORKING MASTER</span> HOJE,<br>VOCÊ LEVA DE FORMA VITALÍCIA:</h2>
     </div>
-    <div class="modules">
 
-      <div class="module">
-        <div class="module-header">
-          <div class="mod-num">01</div>
-          <div class="mod-info">
-            <h3>Fundamentos do Direct Response</h3>
-            <p>Percebe exactamente como e porquê o direct response funciona</p>
-          </div>
-          <span class="mod-badge b-basic">Básico</span>
-        </div>
-        <div class="mod-lessons">
-          <div class="lesson">O que é Direct Response e como difere do marketing de marca</div>
-          <div class="lesson">Os 5 princípios que toda mensagem de vendas precisa de ter</div>
-          <div class="lesson">Psicologia do consumidor aplicada à comunicação directa</div>
-          <div class="lesson">Como pensar como um profissional de direct response</div>
-        </div>
+    <div class="included-grid">
+
+      <div class="inc-card">
+        <img src="assets/inc-calls.jpg.png" alt="Calls AO VIVO">
       </div>
 
-      <div class="module">
-        <div class="module-header">
-          <div class="mod-num">02</div>
-          <div class="mod-info">
-            <h3>Conhecer o Mercado a Fundo</h3>
-            <p>Descobre exactamente o que o teu cliente quer ouvir</p>
-          </div>
-          <span class="mod-badge b-basic">Básico</span>
-        </div>
-        <div class="mod-lessons">
-          <div class="lesson">Como identificar a dor real do teu cliente ideal</div>
-          <div class="lesson">Pesquisa de mercado que revela o que a concorrência ignora</div>
-          <div class="lesson">Construção do perfil de cliente com precisão</div>
-          <div class="lesson">Como usar as palavras do próprio cliente na tua mensagem</div>
-        </div>
+      <div class="inc-card">
+        <img src="assets/inc-aulas.jpg.png" alt="Aulas Gravadas 100% Exclusivas">
       </div>
 
-      <div class="module">
-        <div class="module-header">
-          <div class="mod-num">03</div>
-          <div class="mod-info">
-            <h3>Copywriting de Alta Conversão</h3>
-            <p>Escreve textos que geram resposta e acção imediata</p>
-          </div>
-          <span class="mod-badge b-mid">Intermédio</span>
-        </div>
-        <div class="mod-lessons">
-          <div class="lesson">Estruturas de copy que convertem (PAS, AIDA, BAB e outras)</div>
-          <div class="lesson">Como criar títulos que param o scroll</div>
-          <div class="lesson">O lead — como abrir uma mensagem para que ninguém a feche</div>
-          <div class="lesson">Storytelling aplicado às vendas</div>
-        </div>
+      <div class="inc-card">
+        <img src="assets/inc-whatsapp.jpg.png" alt="Grupo no WhatsApp Exclusivo">
       </div>
 
-      <div class="module">
-        <div class="module-header">
-          <div class="mod-num">04</div>
-          <div class="mod-info">
-            <h3>Construção de Ofertas</h3>
-            <p>Transforma o teu produto numa proposta que as pessoas precisam de aceitar</p>
-          </div>
-          <span class="mod-badge b-mid">Intermédio</span>
-        </div>
-        <div class="mod-lessons">
-          <div class="lesson">A diferença entre produto e oferta</div>
-          <div class="lesson">Como empilhar valor e tornar o preço óbvio</div>
-          <div class="lesson">Bónus que aumentam a conversão sem reduzir a margem</div>
-          <div class="lesson">Garantias como ferramenta para eliminar objecções</div>
-        </div>
+      <div class="inc-card">
+        <img src="assets/calls.png" alt="Acesso a Calls e Chats Network Pro">
       </div>
 
-      <div class="module">
-        <div class="module-header">
-          <div class="mod-num">05</div>
-          <div class="mod-info">
-            <h3>Anúncios com Retorno Real</h3>
-            <p>Cria anúncios pagos e orgânicos construídos para converter</p>
-          </div>
-          <span class="mod-badge b-mid">Intermédio</span>
-        </div>
-        <div class="mod-lessons">
-          <div class="lesson">Estrutura de um anúncio de resposta directa</div>
-          <div class="lesson">Copy para Facebook, Instagram e WhatsApp</div>
-          <div class="lesson">Como testar anúncios sem desperdiçar orçamento</div>
-          <div class="lesson">Retargeting e mensagens para quem já te conhece</div>
-        </div>
+      <div class="inc-card">
+        <img src="assets/inc-tools.jpg.png" alt="Rateio Network PRO - 500 Ferramentas">
       </div>
 
-      <div class="module">
-        <div class="module-header">
-          <div class="mod-num">06</div>
-          <div class="mod-info">
-            <h3>Email Marketing e Sequências de Venda</h3>
-            <p>Constrói um sistema de comunicação que vende de forma consistente</p>
-          </div>
-          <span class="mod-badge b-adv">Avançado</span>
-        </div>
-        <div class="mod-lessons">
-          <div class="lesson">Como construir uma lista de email que responde</div>
-          <div class="lesson">Sequência de boas-vindas que gera confiança e venda</div>
-          <div class="lesson">Emails de seguimento para quem ainda não decidiu</div>
-          <div class="lesson">Campanhas de lançamento estruturadas</div>
-        </div>
+      <div class="inc-card">
+        <img src="assets/caixa-banner.jpg.png" alt="Levantamento de Caixa Networking Master">
       </div>
 
-      <div class="module">
-        <div class="module-header">
-          <div class="mod-num">07</div>
-          <div class="mod-info">
-            <h3>Funis de Venda Completos</h3>
-            <p>Cria sistemas automáticos de captação e conversão</p>
-          </div>
-          <span class="mod-badge b-adv">Avançado</span>
-        </div>
-        <div class="mod-lessons">
-          <div class="lesson">Tipos de funis e quando aplicar cada um</div>
-          <div class="lesson">Páginas de captura que convertem visitantes em contactos</div>
-          <div class="lesson">Páginas de venda — estrutura completa</div>
-          <div class="lesson">Order bumps, upsells e maximização de valor por cliente</div>
-        </div>
-      </div>
+    </div>
 
-      <div class="module">
-        <div class="module-header">
-          <div class="mod-num">08</div>
-          <div class="mod-info">
-            <h3>Escala e Estratégia Avançada</h3>
-            <p>Aumenta os resultados e consolida a tua posição no mercado</p>
-          </div>
-          <span class="mod-badge b-adv">Avançado</span>
-        </div>
-        <div class="mod-lessons">
-          <div class="lesson">Análise de métricas e optimização contínua</div>
-          <div class="lesson">Como escalar o que já está a funcionar</div>
-          <div class="lesson">Parcerias e estratégias de afiliados</div>
-          <div class="lesson">Construção de autoridade e posicionamento de mercado</div>
-        </div>
-      </div>
-
+    <div style="text-align:center; margin-top: 48px;">
+      <a href="https://checkout.escalepay.com/8162455" target="_blank" class="btn" style="font-size:1rem; letter-spacing:.08em; text-transform:uppercase; padding: 18px 52px;">
+        Quero Todo o Conteúdo
+      </a>
     </div>
   </div>
 </section>
 
-<!-- PARA QUEM É -->
-<section class="section">
+<!-- LEVANTAMENTO DE CAIXA -->
+<section class="section caixa-section">
+  <div class="container">
+
+    <!-- Topo: título + descrição -->
+    <div class="caixa-top">
+      <div class="caixa-top-left">
+        <h2 class="caixa-title">
+          LEVANTAMENTO<br>
+          <span class="caixa-hl">DE CAIXA</span><br>
+          NETWORKING<br>MASTER
+        </h2>
+      </div>
+      <div class="caixa-top-right">
+        <p class="caixa-desc">
+          O Levantamento de Caixa é mais do que um bónus, é um método completo para quem quer gerar os primeiros resultados rápidos. Você aprende a gerar caixa imediato, vender serviços simples no digital e escalar com DropServicing, tudo dentro da comunidade Networking Master.
+        </p>
+      </div>
+    </div>
+
+    <!-- Mockup / Banner -->
+    <div class="caixa-banner">
+      <img src="assets/levantamentocaixa-banner.png" alt="Código da Ascensão - Método de Levantamento de Caixa">
+    </div>
+
+    <!-- Tabs FAQ -->
+    <div class="caixa-tabs-wrap">
+      <div class="caixa-tabs">
+        <button class="caixa-tab active" onclick="caixaTab(0)">O QUE É O LEVANTAMENTO DE CAIXA?</button>
+        <button class="caixa-tab" onclick="caixaTab(1)">QUAIS SÃO OS MÓDULOS DISPONÍVEIS?</button>
+        <button class="caixa-tab" onclick="caixaTab(2)">EU PAGO ALGO ADICIONAL PARA ACEDER?</button>
+      </div>
+
+      <div class="caixa-tab-content">
+        <div class="caixa-panel active" id="caixa-panel-0">
+          <h3>O QUE É O LEVANTAMENTO DE CAIXA?</h3>
+          <p>Uma metodologia exclusiva com 3 módulos para aprender a captar recursos, vender serviços no digital e escalar o teu negócio do zero aos primeiros 10K.</p>
+        </div>
+        <div class="caixa-panel" id="caixa-panel-1">
+          <h3>QUAIS SÃO OS MÓDULOS DISPONÍVEIS?</h3>
+          <p>Módulo 01: Levantamento de Caixa, de 0 a 10K. Módulo 02: Vender Serviços Simples no Digital. Módulo 03: DropServicing, monetiza sem precisar de entregar tu mesmo.</p>
+        </div>
+        <div class="caixa-panel" id="caixa-panel-2">
+          <h3>EU PAGO ALGO ADICIONAL PARA ACEDER?</h3>
+          <p>Não. O acesso ao Levantamento de Caixa está incluído na tua entrada para o Networking Master. Sem custos adicionais, sem surpresas.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top: 48px;">
+      <a href="https://checkout.escalepay.com/8162455" target="_blank" class="caixa-cta-btn">→ QUERO ACESSO</a>
+    </div>
+  </div>
+</section>
+
+<!-- MÓDULOS DO CURSO -->
+<section class="section modulos-section">
   <div class="container">
     <div class="section-header">
-      <div class="label">Para Quem É</div>
-      <h2>Este curso foi criado para <span class="hl">pessoas como tu</span></h2>
+      <h2 class="modulos-title">MÓDULOS DO CURSO</h2>
+      <p class="modulos-sub">Novos módulos são adicionados constantemente de acordo com os conteúdos que ensino. Sempre que surge uma estratégia nova ou uma mudança no mercado, você recebe o conteúdo em primeira mão.</p>
     </div>
-    <div class="for-grid">
-      <div class="for-card">
-        <div class="for-card-tag">Perfil 01</div>
-        <h3>Empreendedor que está a começar</h3>
-        <p>Queres vender mas não sabes como comunicar o que o teu produto vale de verdade.</p>
-      </div>
-      <div class="for-card">
-        <div class="for-card-tag">Perfil 02</div>
-        <h3>Dono de negócio com produto mas sem clientes suficientes</h3>
-        <p>Já tens o que vender. Precisas de aprender a chegar às pessoas certas com a mensagem certa.</p>
-      </div>
-      <div class="for-card">
-        <div class="for-card-tag">Perfil 03</div>
-        <h3>Quem quer oferecer serviços de copy</h3>
-        <p>Precisas de uma base técnica sólida para criar trabalho que traz resultados mensuráveis aos clientes.</p>
-      </div>
-      <div class="for-card">
-        <div class="for-card-tag">Perfil 04</div>
-        <h3>Criador de conteúdo com audiência mas sem monetização</h3>
-        <p>Tens atenção das pessoas. Este curso ensina-te a transformar essa atenção em receita real.</p>
-      </div>
+  </div>
+  <div class="modulos-scroll-wrap">
+    <div class="modulos-track">
+
+      <div class="mcard"><img src="assets/mod-01.png" alt="Módulo 01"></div>
+      <div class="mcard"><img src="assets/mod-02.png" alt="Módulo 02"></div>
+      <div class="mcard"><img src="assets/mod-03.png" alt="Módulo 03"></div>
+      <div class="mcard"><img src="assets/mod-04.png" alt="Módulo 04"></div>
+      <div class="mcard"><img src="assets/mod-05.png" alt="Módulo 05"></div>
+      <div class="mcard"><img src="assets/mod-06.png" alt="Módulo 06"></div>
+      <div class="mcard"><img src="assets/mod-07.png" alt="Módulo 07"></div>
+      <div class="mcard"><img src="assets/mod-08.png" alt="Módulo 08"></div>
+      <div class="mcard"><img src="assets/mod-1.png" alt="Módulo 1"></div>
+      <div class="mcard"><img src="assets/mod-2.png" alt="Módulo 2"></div>
+      <div class="mcard"><img src="assets/mod-3.png" alt="Módulo 3"></div>
+      <div class="mcard"><img src="assets/mod-4.png" alt="Módulo 4"></div>
+      <div class="mcard"><img src="assets/mod-5.png" alt="Módulo 5"></div>
+      <div class="mcard"><img src="assets/mod-6.png" alt="Módulo 6"></div>
+      <div class="mcard"><img src="assets/mod-7.png" alt="Módulo 7"></div>
+      <div class="mcard"><img src="assets/mod-lc-01.png" alt="Levantamento de Caixa 01"></div>
+      <div class="mcard"><img src="assets/mod-lc-02.png" alt="Levantamento de Caixa 02"></div>
+      <div class="mcard"><img src="assets/mod-lc-03.png" alt="Levantamento de Caixa 03"></div>
+      <!-- duplicados para loop contínuo -->
+      <div class="mcard"><img src="assets/mod-01.png" alt="Módulo 01"></div>
+      <div class="mcard"><img src="assets/mod-02.png" alt="Módulo 02"></div>
+      <div class="mcard"><img src="assets/mod-03.png" alt="Módulo 03"></div>
+      <div class="mcard"><img src="assets/mod-04.png" alt="Módulo 04"></div>
+      <div class="mcard"><img src="assets/mod-05.png" alt="Módulo 05"></div>
+      <div class="mcard"><img src="assets/mod-06.png" alt="Módulo 06"></div>
+      <div class="mcard"><img src="assets/mod-07.png" alt="Módulo 07"></div>
+      <div class="mcard"><img src="assets/mod-08.png" alt="Módulo 08"></div>
+      <div class="mcard"><img src="assets/mod-1.png" alt="Módulo 1"></div>
+      <div class="mcard"><img src="assets/mod-2.png" alt="Módulo 2"></div>
+      <div class="mcard"><img src="assets/mod-3.png" alt="Módulo 3"></div>
+      <div class="mcard"><img src="assets/mod-4.png" alt="Módulo 4"></div>
+      <div class="mcard"><img src="assets/mod-5.png" alt="Módulo 5"></div>
+      <div class="mcard"><img src="assets/mod-6.png" alt="Módulo 6"></div>
+      <div class="mcard"><img src="assets/mod-7.png" alt="Módulo 7"></div>
+      <div class="mcard"><img src="assets/mod-lc-01.png" alt="Levantamento de Caixa 01"></div>
+      <div class="mcard"><img src="assets/mod-lc-02.png" alt="Levantamento de Caixa 02"></div>
+      <div class="mcard"><img src="assets/mod-lc-03.png" alt="Levantamento de Caixa 03"></div>
+
     </div>
   </div>
 </section>
 
-<!-- TESTEMUNHOS -->
-<section class="section testimonials">
+<!-- RESULTADOS -->
+<section class="section resultados-section">
   <div class="container">
     <div class="section-header">
-      <div class="label">Resultados</div>
-      <h2>O que dizem quem já <span class="hl">passou pelo curso</span></h2>
+      <h2 class="resultados-title">RESULTADOS REAIS DE ALUNOS DO CURSO</h2>
+      <p class="resultados-sub">Histórias de pessoas humildes que aplicaram o método e mudaram de vida assim como eu.</p>
     </div>
-    <div class="testi-grid">
-      <div class="testi-card">
-        <div class="testi-stars">
-          <div class="star"></div><div class="star"></div><div class="star"></div>
-          <div class="star"></div><div class="star"></div>
-        </div>
-        <blockquote>
-          "Ficava horas a escrever textos que ninguém lia. Depois de aplicar o que aprendi no módulo 3, as minhas primeiras mensagens de venda geraram resposta em menos de dois dias."
-        </blockquote>
-        <div class="testi-author">
-          <div class="testi-initial">M</div>
-          <div class="testi-info">
-            <strong>Marcos Tembe</strong>
-            <span>Empreendedor Digital, Maputo</span>
-          </div>
-        </div>
-      </div>
-      <div class="testi-card">
-        <div class="testi-stars">
-          <div class="star"></div><div class="star"></div><div class="star"></div>
-          <div class="star"></div><div class="star"></div>
-        </div>
-        <blockquote>
-          "Nunca pensei que escrever para vender pudesse ser tão estruturado. O módulo de funis mudou por completo a forma como organizo o meu negócio."
-        </blockquote>
-        <div class="testi-author">
-          <div class="testi-initial">A</div>
-          <div class="testi-info">
-            <strong>Ana Cossa</strong>
-            <span>Coach de Carreira, Beira</span>
-          </div>
-        </div>
-      </div>
-      <div class="testi-card">
-        <div class="testi-stars">
-          <div class="star"></div><div class="star"></div><div class="star"></div>
-          <div class="star"></div><div class="star"></div>
-        </div>
-        <blockquote>
-          "Gastava dinheiro em anúncios sem resultado nenhum. Depois de perceber a estrutura certa, o custo por cliente caiu bastante. Vale cada metical investido."
-        </blockquote>
-        <div class="testi-author">
-          <div class="testi-initial">R</div>
-          <div class="testi-info">
-            <strong>Rafael Machava</strong>
-            <span>Gestor de E-commerce, Maputo</span>
-          </div>
-        </div>
-      </div>
+
+  </div>
+  <div class="resultados-scroll-wrap">
+    <div class="resultados-track">
+      <div class="res-card"><img src="assets/dep (1).jpeg" alt="Depoimento aluno"></div>
+      <div class="res-card"><img src="assets/dep (18).jpeg" alt="Depoimento aluno"></div>
+      <div class="res-card"><img src="assets/dep (19).jpeg" alt="Depoimento aluno"></div>
+      <div class="res-card"><img src="assets/dep (20).jpeg" alt="Depoimento aluno"></div>
+      <div class="res-card"><img src="assets/dep (21).jpeg" alt="Depoimento aluno"></div>
+      <div class="res-card"><img src="assets/dep (22).jpeg" alt="Depoimento aluno"></div>
+      <div class="res-card"><img src="assets/dep (23).jpeg" alt="Depoimento aluno"></div>
+      <div class="res-card"><img src="assets/dep (24).jpeg" alt="Depoimento aluno"></div>
+      <div class="res-card"><img src="assets/dep (25).jpeg" alt="Depoimento aluno"></div>
+      <div class="res-card"><img src="assets/dep (26).jpeg" alt="Depoimento aluno"></div>
+      <div class="res-card"><img src="assets/dep (27).jpeg" alt="Depoimento aluno"></div>
+      <div class="res-card"><img src="assets/dep (28).jpeg" alt="Depoimento aluno"></div>
+      <div class="res-card"><img src="assets/dep (29).jpeg" alt="Depoimento aluno"></div>
+      <div class="res-card"><img src="assets/dep (30).jpeg" alt="Depoimento aluno"></div>
+      <div class="res-card"><img src="assets/dep (31).jpeg" alt="Depoimento aluno"></div>
+      <div class="res-card"><img src="assets/dep (32).jpeg" alt="Depoimento aluno"></div>
+      <div class="res-card"><img src="assets/dep (33).jpeg" alt="Depoimento aluno"></div>
+      <!-- duplicados loop infinito -->
+      <div class="res-card"><img src="assets/dep (1).jpeg" alt="Depoimento aluno"></div>
+      <div class="res-card"><img src="assets/dep (18).jpeg" alt="Depoimento aluno"></div>
+      <div class="res-card"><img src="assets/dep (19).jpeg" alt="Depoimento aluno"></div>
+      <div class="res-card"><img src="assets/dep (20).jpeg" alt="Depoimento aluno"></div>
+      <div class="res-card"><img src="assets/dep (21).jpeg" alt="Depoimento aluno"></div>
+      <div class="res-card"><img src="assets/dep (22).jpeg" alt="Depoimento aluno"></div>
+      <div class="res-card"><img src="assets/dep (23).jpeg" alt="Depoimento aluno"></div>
+      <div class="res-card"><img src="assets/dep (24).jpeg" alt="Depoimento aluno"></div>
+      <div class="res-card"><img src="assets/dep (25).jpeg" alt="Depoimento aluno"></div>
+      <div class="res-card"><img src="assets/dep (26).jpeg" alt="Depoimento aluno"></div>
+      <div class="res-card"><img src="assets/dep (27).jpeg" alt="Depoimento aluno"></div>
+      <div class="res-card"><img src="assets/dep (28).jpeg" alt="Depoimento aluno"></div>
+      <div class="res-card"><img src="assets/dep (29).jpeg" alt="Depoimento aluno"></div>
+      <div class="res-card"><img src="assets/dep (30).jpeg" alt="Depoimento aluno"></div>
+      <div class="res-card"><img src="assets/dep (31).jpeg" alt="Depoimento aluno"></div>
+      <div class="res-card"><img src="assets/dep (32).jpeg" alt="Depoimento aluno"></div>
+      <div class="res-card"><img src="assets/dep (33).jpeg" alt="Depoimento aluno"></div>
+    </div>
+  </div>
+  <div class="container">
+
+    <div style="text-align:center; margin-top: 48px;">
+      <a href="https://checkout.escalepay.com/8162455" target="_blank" class="btn">Quero Esses Resultados</a>
     </div>
   </div>
 </section>
 
-<!-- BÓNUS -->
-<section class="section">
+<!-- VALE A PENA -->
+<section class="section valepena-section">
   <div class="container">
-    <div class="section-header">
-      <div class="label">Incluído no Curso</div>
-      <h2>Para além das aulas, recebes também <span class="hl">estes materiais</span></h2>
-    </div>
-    <div class="bonus-grid">
-      <div class="bonus-card">
-        <div class="bonus-num">Material 01</div>
-        <h3>Swipe File de Copy</h3>
-        <p>Colecção com os melhores anúncios, títulos e emails que já provaram funcionar. Prontos a adaptar ao teu contexto.</p>
-      </div>
-      <div class="bonus-card">
-        <div class="bonus-num">Material 02</div>
-        <h3>Templates de Páginas de Venda</h3>
-        <p>Modelos prontos de páginas de captura e venda. Preenches os espaços com o teu contexto e lanças.</p>
-      </div>
-      <div class="bonus-card">
-        <div class="bonus-num">Material 03</div>
-        <h3>Checklist de Oferta</h3>
-        <p>Verifica se a tua oferta tem tudo o que precisa para converter antes de a colocar no mercado.</p>
-      </div>
-      <div class="bonus-card">
-        <div class="bonus-num">Material 04</div>
-        <h3>Comunidade Privada de Alunos</h3>
-        <p>Grupo exclusivo para tirar dúvidas, receber feedback sobre o teu trabalho e fazer conexões com outros alunos.</p>
-      </div>
-    </div>
+    <h2 class="valepena-title">
+      ENFIM,<br>
+      VALE A PENA O<br>
+      <span class="valepena-hl">NETWORKING<br>MASTER?</span>
+    </h2>
+    <p class="valepena-desc">
+      Perguntaram isso quando custava <strong>1.200 MZN</strong>, depois <strong>1.500 MZN</strong>, <strong>2.000 MZN</strong>... e agora custa <strong>2.500 MZN</strong>. E vai subir de novo!
+    </p>
+    <p class="valepena-desc" style="margin-top:1.4em;">
+      Podes entrar agora por este valor ou deixar para depois, pagando mais caro. Mas uma coisa eu garanto: vai ser difícil resistir quando vires a comunidade activa nas calls ao vivo e os conteúdos a ser actualizados todos os dias...
+    </p>
   </div>
 </section>
+
+
 
 <!-- PRICING -->
 <section class="section pricing" id="inscricao">
   <div class="container">
     <div class="section-header">
-      <div class="label">Investimento</div>
-      <h2>Acesso completo a tudo <span class="hl">por um único valor</span></h2>
+      <h2>PRONTO PARA LUCRAR<br><span class="hl">NO NETWORKING MASTER?</span></h2>
+      <p>Tudo o que precisas para começar, crescer e escalar no digital.</p>
     </div>
+
+    <ul class="price-checklist">
+      <li>Acesso a todos os módulos do curso</li>
+      <li>Calls ao vivo semanais com a comunidade</li>
+      <li>Grupo no WhatsApp exclusivo activo todos os dias</li>
+      <li>Levantamento de Caixa, 3 formas altamente eficazes</li>
+      <li>Rateio Network PRO (500+ ferramentas)</li>
+      <li>Actualizações gratuitas de conteúdo</li>
+    </ul>
+
     <div class="price-wrap">
       <div class="price-box">
-        <div class="price-top-tag">Melhor Valor</div>
-        <div class="price-type">Acesso Completo e Vitalício</div>
-        <div class="price-value"><sup>MZN</sup> 2.500</div>
-        <div class="price-detail">Pagamento único &middot; Sem mensalidades &middot; Acesso para sempre</div>
-
-        <ul class="price-list">
-          <li>8 módulos completos, do básico ao avançado</li>
-          <li>50+ aulas em vídeo com aplicação directa</li>
-          <li>Swipe File de Copy</li>
-          <li>Templates de Páginas de Venda</li>
-          <li>Checklist de Oferta</li>
-          <li>Acesso à Comunidade Privada</li>
-          <li>Actualizações futuras sem custo adicional</li>
-          <li>Suporte directo via chat</li>
-        </ul>
-
-        <a href="#" class="btn" style="width:100%; display:block; text-align:center;">
-          Quero Entrar Agora — 2.500 MZN
+        <div class="price-badge">Network Master</div>
+        <div class="price-value"><sup>MZN </sup>2.500</div>
+        <div class="price-detail">Pagamento único &middot; M-Pesa · e-Mola · Cartão bancário</div>
+        <p style="font-size:.9375rem; color:var(--muted); line-height:1.9; margin-bottom:28px;">Garanta a tua vaga na comunidade do Networking Master que mais cresce em Moçambique antes que o preço suba de novo.</p>
+        <a href="https://checkout.escalepay.com/8162455" target="_blank" class="btn" style="width:100%; display:block; text-align:center; box-sizing:border-box;">
+          QUERO ENTRAR
         </a>
-        <p class="price-secure">Acesso seguro &middot; Confirmação imediata após pagamento</p>
+        <p class="price-secure" style="text-align:center; margin-top:14px;">Acesso confirmado imediatamente após pagamento</p>
       </div>
     </div>
   </div>
 </section>
 
+<!-- GARANTIA / AVISO / SUPORTE -->
+<section class="section" style="background:var(--black);">
+  <div class="container">
+    <div class="trust-grid">
+
+      <div class="trust-card trust-purple">
+        <div class="trust-dot" style="background:#a855f7;"></div>
+        <div class="trust-label">Proteção Total</div>
+        <div class="trust-icon" style="background:rgba(168,85,247,.15); border-color:rgba(168,85,247,.4);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>GARANTIA INCONDICIONAL DE 7 DIAS</h3>
+        <p>Se em 7 dias sentires que não é para ti, devolvemos 100% do valor. Sem letra miúda. Sem questionamentos. Entras com confiança. E se não sentires que é para ti, sais sem prejuízo.</p>
+        <div class="trust-glow trust-glow-purple"></div>
+      </div>
+
+      <div class="trust-card trust-red">
+        <div class="trust-dot" style="background:#ef4444;"></div>
+        <div class="trust-label">Aviso Importante</div>
+        <div class="trust-icon" style="background:rgba(239,68,68,.15); border-color:rgba(239,68,68,.4);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
+        <h3>LEIA COM ATENÇÃO</h3>
+        <p>Não envies mensagem a pedir desconto ou a perguntar se vale a pena. Se não consegues ver o valor do Networking Master, sem contar os rateios, por este preço, esta comunidade não é para ti.</p>
+        <div class="trust-glow trust-glow-red"></div>
+      </div>
+
+      <div class="trust-card trust-green">
+        <div class="trust-dot" style="background:#22c55e;"></div>
+        <div class="trust-label">Suporte Activo</div>
+        <div class="trust-icon" style="background:rgba(34,197,94,.15); border-color:rgba(34,197,94,.4);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        </div>
+        <h3>AINDA TENS DÚVIDAS?</h3>
+        <p>Fala connosco pelo WhatsApp e tira todas as tuas dúvidas antes de garantires a tua vaga.</p>
+        <a href="https://wa.me/message/VZMCSP7GZMOSH1" class="trust-btn">→ TIRE SUAS DÚVIDAS</a>
+        <div class="trust-glow trust-glow-green"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- FAQ -->
-<section class="section">
+<section class="section" style="background:var(--black);">
   <div class="container">
     <div class="section-header">
-      <div class="label">Perguntas Frequentes</div>
-      <h2>Dúvidas que <span class="hl">costumam aparecer</span></h2>
+      <h2 style="font-size:clamp(2rem,5vw,3rem); font-weight:900; text-transform:uppercase;">FAQ</h2>
     </div>
-    <div class="faq-list">
+    <div class="faq-grid">
 
-      <details>
-        <summary>Preciso de experiência em marketing ou vendas para começar?</summary>
-        <div class="faq-body">
-          Não. O curso começa do zero absoluto e avança progressivamente. Se nunca vendeste nada, vais seguir um caminho estruturado até ao nível avançado sem saltar etapas.
+      <div class="faq-card">
+        <div class="faq-card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
         </div>
-      </details>
+        <h4>Quando recebo o meu acesso?</h4>
+        <p>Imediatamente após o pagamento! Assim que o M-Pesa ou e-Mola for confirmado, recebes o acesso completo na hora.</p>
+      </div>
 
-      <details>
-        <summary>Serve para qualquer tipo de negócio?</summary>
-        <div class="faq-body">
-          Sim. Os princípios do direct response aplicam-se a produtos físicos, serviços, infoprodutos, negócios locais e e-commerce. As técnicas são sólidas — adaptas ao teu contexto.
+      <div class="faq-card">
+        <div class="faq-card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
         </div>
-      </details>
+        <h4>Preciso pagar todo o mês?</h4>
+        <p>Não! É pagamento único. Pagas UMA VEZ e tens acesso PARA SEMPRE. Sem mensalidades, sem renovação.</p>
+      </div>
 
-      <details>
-        <summary>Quanto tempo leva a ver os primeiros resultados?</summary>
-        <div class="faq-body">
-          Depende do que aplicas. Alunos que implementam imediatamente costumam ver as primeiras respostas na primeira semana. O curso foca-se em aplicação prática, não apenas em teoria.
+      <div class="faq-card">
+        <div class="faq-card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
         </div>
-      </details>
+        <h4>E se eu não gostar?</h4>
+        <p>7 dias de garantia total. Não gostaste? É só avisar e devolvemos 100% do teu dinheiro. Sem burocracia.</p>
+      </div>
 
-      <details>
-        <summary>O acesso expira?</summary>
-        <div class="faq-body">
-          Não. O acesso é vitalício. Voltas ao curso sempre que precisares, incluindo todas as actualizações futuras sem custo adicional.
+      <div class="faq-card">
+        <div class="faq-card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>
         </div>
-      </details>
+        <h4>Os conteúdos são actualizados?</h4>
+        <p>Sim! Actualizamos constantemente. Sempre que surge uma nova estratégia ou mudança no mercado, recebes em primeira mão.</p>
+      </div>
 
-      <details>
-        <summary>Como funciona o suporte?</summary>
-        <div class="faq-body">
-          Tens suporte directo via chat e acesso à comunidade privada onde podes colocar questões, partilhar o teu trabalho e receber feedback do instrutor e dos outros alunos.
+      <div class="faq-card">
+        <div class="faq-card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
         </div>
-      </details>
+        <h4>Funciona no telemóvel?</h4>
+        <p>Perfeitamente! O WhatsApp, as calls e todos os conteúdos funcionam tanto no telemóvel como no computador.</p>
+      </div>
 
-      <details>
-        <summary>Como faço o pagamento?</summary>
-        <div class="faq-body">
-          Aceitamos M-Pesa, e-Mola e transferência bancária. Após confirmação do pagamento, o acesso ao curso é liberado imediatamente.
+      <div class="faq-card">
+        <div class="faq-card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
         </div>
-      </details>
+        <h4>Posso partilhar o acesso?</h4>
+        <p>NÃO. Cada acesso é pessoal e intransferível. Partilhar = banimento permanente sem reembolso.</p>
+      </div>
 
+      <div class="faq-card">
+        <div class="faq-card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        </div>
+        <h4>Como faço o pagamento?</h4>
+        <p>Aceitamos M-Pesa, e-Mola e cartões bancários. O sistema é automático e seguro, assim que o pagamento é confirmado, o acesso é liberado na hora.</p>
+      </div>
+
+      <div class="faq-card">
+        <div class="faq-card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        </div>
+        <h4>Tens suporte se precisares?</h4>
+        <p>Sim! Suporte directo via WhatsApp para qualquer dúvida ou problema. Estamos aqui para te ajudar.</p>
+      </div>
+
+    </div>
+    <div style="text-align:center; margin-top:48px;">
+      <a href="https://checkout.escalepay.com/8162455" target="_blank" class="btn">→ QUERO TUDO ISSO</a>
     </div>
   </div>
 </section>
 
-<!-- FINAL CTA -->
-<section class="final-cta">
-  <div class="container">
-    <h2>Cada dia sem esta habilidade é um dia de <span class="hl">vendas perdidas</span></h2>
-    <p>Aprende a comunicar de forma que gera resposta. Entra no Networking Master e começa hoje.</p>
-    <a href="#inscricao" class="btn">Garantir o Meu Acesso</a>
-  </div>
-</section>
 
 <!-- FOOTER -->
 <footer>
   <div class="container">
-    <p>&copy; 2026 Networking Master. Todos os direitos reservados.</p>
+    <div class="footer-brand">NETWORKING MASTER 2026 &copy; Todos os direitos reservados.</div>
+    <p>Bruno Dramusse &middot; Networking Master &middot; Maputo, Moçambique</p>
   </div>
 </footer>
 
+
+<script>
+function caixaTab(index) {
+  document.querySelectorAll('.caixa-tab').forEach(function(t, i) {
+    t.classList.toggle('active', i === index);
+  });
+  document.querySelectorAll('.caixa-panel').forEach(function(p, i) {
+    p.classList.toggle('active', i === index);
+  });
+}
+
+// Auto-scroll genérico
+function autoScroll(selector) {
+  var wrap = document.querySelector(selector);
+  if (!wrap) return;
+  var speed = 0.6;
+  var paused = false;
+  wrap.addEventListener('mouseenter', function() { paused = true; });
+  wrap.addEventListener('mouseleave', function() { paused = false; });
+  wrap.addEventListener('touchstart', function() { paused = true; }, {passive: true});
+  wrap.addEventListener('touchend', function() { setTimeout(function() { paused = false; }, 2000); }, {passive: true});
+  (function scroll() {
+    if (!paused) {
+      wrap.scrollLeft += speed;
+      if (wrap.scrollLeft >= wrap.scrollWidth - wrap.clientWidth - 2) wrap.scrollLeft = 0;
+    }
+    requestAnimationFrame(scroll);
+  })();
+}
+autoScroll('.modulos-scroll-wrap');
+autoScroll('.resultados-scroll-wrap');
+
+// Animação cards Vale a Pena — clique para levantar
+(function() {
+  var cards = [
+    document.getElementById('vpc-0'),
+    document.getElementById('vpc-1'),
+    document.getElementById('vpc-2')
+  ];
+  if (!cards[0]) return;
+  var order = [0, 1, 2]; // order[i] = posição do card i
+  function applyPositions() {
+    cards.forEach(function(c, i) {
+      c.className = 'vp-card pos-' + order[i];
+    });
+  }
+  applyPositions();
+  cards.forEach(function(card, clicked) {
+    card.addEventListener('click', function() {
+      var clickedPos = order[clicked];
+      if (clickedPos === 0) return; // já está à frente
+      order = order.map(function(p) { return (p - clickedPos + 3) % 3; });
+      applyPositions();
+    });
+  });
+})();
+
+// SCROLL REVEAL — IntersectionObserver
+(function() {
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+  // Títulos e subtítulos
+  document.querySelectorAll(
+    'h1, h2, h3, h4, .label, .valepena-title, .modulos-title, .resultados-title, .caixa-title, .included-title, .instructor-title'
+  ).forEach(function(el) {
+    el.classList.add('reveal');
+    observer.observe(el);
+  });
+
+  // Parágrafos de secção e hero
+  document.querySelectorAll(
+    '.hero-sub, .hero-note, .section-header p, .instructor-sub, .modulos-sub, .resultados-sub, .valepena-desc, .caixa-desc'
+  ).forEach(function(el) {
+    el.classList.add('reveal', 'reveal-delay-1');
+    observer.observe(el);
+  });
+
+  // Botões
+  document.querySelectorAll('.btn, .caixa-cta-btn, .trust-btn').forEach(function(el) {
+    el.classList.add('reveal', 'reveal-delay-2');
+    observer.observe(el);
+  });
+
+  // Cards com delay progressivo
+  document.querySelectorAll('.icard').forEach(function(el, i) {
+    el.classList.add('reveal', 'reveal-delay-' + Math.min(i % 3 + 1, 4));
+    observer.observe(el);
+  });
+
+  document.querySelectorAll('.inc-card').forEach(function(el, i) {
+    el.classList.add('reveal', 'reveal-delay-' + Math.min(i % 3 + 1, 4));
+    observer.observe(el);
+  });
+
+  document.querySelectorAll('.trust-card').forEach(function(el, i) {
+    el.classList.add('reveal', 'reveal-delay-' + (i + 1));
+    observer.observe(el);
+  });
+
+  document.querySelectorAll('.faq-card').forEach(function(el, i) {
+    el.classList.add('reveal', 'reveal-delay-' + Math.min(i % 4 + 1, 4));
+    observer.observe(el);
+  });
+
+  // Imagens e banners
+  document.querySelectorAll('.caixa-banner, .icard-img-real').forEach(function(el) {
+    el.classList.add('reveal', 'reveal-delay-1');
+    observer.observe(el);
+  });
+
+  // Price box e checklist
+  document.querySelectorAll('.price-box, .price-checklist').forEach(function(el) {
+    el.classList.add('reveal', 'reveal-delay-1');
+    observer.observe(el);
+  });
+
+  // Tabs
+  document.querySelectorAll('.caixa-tabs-wrap').forEach(function(el) {
+    el.classList.add('reveal', 'reveal-delay-2');
+    observer.observe(el);
+  });
+})();
+</script>
 </body>
 </html>
