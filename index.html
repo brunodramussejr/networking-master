@@ -1303,6 +1303,40 @@
       .topic-item { padding: 4px 16px; border-right: none; }
     }
 
+    /* ── MOBILE — organização geral ── */
+    @media (max-width: 480px) {
+      /* Reduzir padding das secções */
+      .section { padding: 60px 0; }
+      .container { padding: 0 18px; }
+
+      /* Hero */
+      .hero { padding: 100px 0 60px; }
+      h1 { font-size: clamp(1.8rem, 7vw, 2.4rem); }
+      h2 { font-size: clamp(1.3rem, 5.5vw, 1.7rem); }
+
+      /* Alinhar textos à esquerda no mobile — evita quebras feias */
+      .instructor-sub, .modulos-sub, .resultados-sub,
+      .section-header p, .hero-sub,
+      .valepena-desc, .caixa-desc,
+      footer p { text-align: left; }
+
+      /* Hero badges — empilhar */
+      .hero-badges { flex-wrap: wrap; gap: 8px; justify-content: center; }
+      .hero-badge { font-size: .78rem; padding: 6px 12px; }
+
+      /* Hero note */
+      .hero-note { font-size: .78rem; }
+
+      /* Checklist — alinhar à esquerda no mobile */
+      .price-checklist, .price-checklist li { text-align: left; justify-content: flex-start; }
+
+      /* Trust cards — texto à esquerda */
+      .trust-card h3, .trust-label { text-align: left; }
+
+      /* Espaço entre secções */
+      .section-header { margin-bottom: 32px; }
+    }
+
     /* ============================================
        REFINAMENTO VISUAL PREMIUM
     ============================================ */
