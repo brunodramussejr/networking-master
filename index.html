@@ -2121,13 +2121,10 @@ function autoScroll(selector) {
   var speed = 0.6;
   var paused = false;
   var isMobile = window.matchMedia('(max-width: 480px)').matches;
-  // No desktop pausa ao hover; no mobile não pausa (user faz scroll vertical da página)
   if (!isMobile) {
     wrap.addEventListener('mouseenter', function() { paused = true; });
     wrap.addEventListener('mouseleave', function() { paused = false; });
   }
-  wrap.addEventListener('touchstart', function() { paused = true; }, {passive: true});
-  wrap.addEventListener('touchend', function() { setTimeout(function() { paused = false; }, 1000); }, {passive: true});
   (function scroll() {
     if (!paused) {
       wrap.scrollLeft += speed;
