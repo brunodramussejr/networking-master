@@ -180,7 +180,7 @@
     .nav-btn:hover { background: #155cdd; }
 
     /* HERO LOGO */
-    .hero-logo { display: flex; justify-content: center; margin-bottom: 36px; }
+    .hero-logo { display: flex; justify-content: center; align-items: center; width: 100%; margin-bottom: 36px; }
     .hero-logo svg { height: 72px; width: auto; }
 
     /* HERO */
@@ -420,7 +420,7 @@
       color: var(--white); line-height: 1.1;
     }
     .price-checklist {
-      list-style: none; width: fit-content; max-width: 100%; margin: 0 auto 40px;
+      list-style: none; width: fit-content; max-width: calc(100% - 36px); margin: 0 auto 40px;
       display: flex; flex-direction: column; gap: 10px;
     }
     .price-checklist li {
@@ -1264,6 +1264,9 @@
     .trust-card p  { font-size: .8125rem; line-height: 1.75; }
     .trust-label   { font-size: .6875rem; letter-spacing: .13em; }
 
+    /* ── FAQ ── */
+    .faq-title { font-size: clamp(2rem,5vw,3rem); font-weight: 900; text-transform: uppercase; }
+
     /* ── FAQ CARDS ── */
     .faq-card    { padding: 28px 24px; gap: 10px; }
     .faq-card h4 { font-size: .875rem; font-weight: 800; line-height: 1.35; letter-spacing: -.005em; margin-bottom: 2px; }
@@ -1303,38 +1306,93 @@
       .topic-item { padding: 4px 16px; border-right: none; }
     }
 
-    /* ── MOBILE — organização geral ── */
+    /* ══════════════════════════════════════
+       MOBILE — tamanhos e layout (≤480px)
+       SÓ muda tamanhos/grids — alinhamentos
+       são IGUAIS ao PC
+       ══════════════════════════════════════ */
     @media (max-width: 480px) {
-      /* Reduzir padding das secções */
-      .section { padding: 60px 0; }
+
+      /* — Estrutura geral — */
+      .section   { padding: 48px 0; }
       .container { padding: 0 18px; }
+      .section-header { margin-bottom: 28px; }
 
-      /* Hero */
-      .hero { padding: 100px 0 60px; }
-      h1 { font-size: clamp(1.8rem, 7vw, 2.4rem); }
-      h2 { font-size: clamp(1.3rem, 5.5vw, 1.7rem); }
-
-      /* Alinhar textos à esquerda no mobile — evita quebras feias */
-      .instructor-sub, .modulos-sub, .resultados-sub,
-      .section-header p, .hero-sub,
-      .valepena-desc, .caixa-desc,
-      footer p { text-align: left; }
-
-      /* Hero badges — empilhar */
+      /* — Hero — */
+      .hero { padding: 80px 0 48px; }
+      .hero-logo { justify-content: center; }
+      .hero-logo svg { height: 48px; }
+      .hero-sub { font-size: .875rem; line-height: 1.6; margin-bottom: 24px; max-width: 100%; text-align: center; }
       .hero-badges { flex-wrap: wrap; gap: 8px; justify-content: center; }
-      .hero-badge { font-size: .78rem; padding: 6px 12px; }
+      .hero-badge  { font-size: .75rem; padding: 5px 10px; }
+      .hero-note   { font-size: .75rem; text-align: center; }
 
-      /* Hero note */
-      .hero-note { font-size: .78rem; }
+      /* — Tipografia — tamanhos menores, alinhamento IGUAL ao PC — */
+      h1 { font-size: 1.25rem; line-height: 1.2; text-align: center; }
+      h2 { font-size: 1rem;  line-height: 1.25; text-align: center; }
+      h3 { font-size: .8rem;  text-align: center; }
+      h4 { font-size: .75rem; text-align: center; }
+      .included-title  { font-size: .85rem; line-height: 1.3; }
+      .instructor-title { font-size: 1rem; }
+      .modulos-title    { font-size: 1rem; }
+      .resultados-title { font-size: .9rem; }
+      .caixa-title      { font-size: 1.3rem; line-height: 1.1; }
+      .valepena-title   { font-size: 1.3rem; line-height: 1.1; }
+      .pricing .section-header h2 { font-size: 1.1rem; }
+      .faq-title { font-size: 1.1rem; }
+      .section-header  { text-align: center; }
+      .section-header p { font-size: .875rem; text-align: center; }
+      .instructor-sub, .modulos-sub, .resultados-sub { font-size: .875rem; line-height: 1.6; text-align: center; }
 
-      /* Checklist — alinhar à esquerda no mobile */
-      .price-checklist, .price-checklist li { text-align: left; justify-content: flex-start; }
+      /* — Botões — */
+      .btn { font-size: .9rem; padding: 14px 28px; }
 
-      /* Trust cards — texto à esquerda */
-      .trust-card h3, .trust-label { text-align: left; }
+      /* — Checklist — bloco centrado, itens à esquerda (igual PC) — */
+      .price-checklist { width: fit-content; max-width: 100%; margin: 0 auto 32px; }
+      .price-checklist li { font-size: .78rem; align-items: center; line-height: 1.5; gap: 8px; }
+      .price-checklist li::before { width: 14px; height: 14px; flex-shrink: 0; }
+      .price-detail { font-size: .78rem; text-align: center; }
+      .price-value  { font-size: 2.4rem; }
+      .price-badge  { font-size: .6rem; }
+      .price-box p  { font-size: .85rem; text-align: center; }
+      .price-secure { text-align: left; }
 
-      /* Espaço entre secções */
-      .section-header { margin-bottom: 32px; }
+      /* — Alinhamento esquerda (igual PC) — */
+      .faq-card p, .faq-card h4, .faq-card-icon { text-align: left; }
+      .trust-card p { text-align: left; }
+      .icard-body, .icard-profile-info { text-align: left; }
+      .caixa-panel p, .caixa-panel h3 { text-align: left; }
+      .caixa-title, .valepena-title { text-align: left; }
+      .caixa-tab { text-align: left; font-size: .7rem; }
+
+      /* — Alinhamento centrado (igual PC) — */
+      .trust-label, .trust-card h3 { text-align: center; }
+      footer p { text-align: center; }
+
+      /* — Layouts de grid — empilhar — */
+      .instructor-grid  { grid-template-columns: 1fr; gap: 20px; }
+      .included-grid    { grid-template-columns: 1fr; gap: 12px; }
+      .pain-grid        { grid-template-columns: 1fr; }
+      .testi-grid       { grid-template-columns: 1fr; }
+      .for-grid         { grid-template-columns: 1fr; }
+      .bonus-grid       { grid-template-columns: 1fr; }
+      .valepena-wrap    { grid-template-columns: 1fr; gap: 24px; }
+      .valepena-col     { gap: 12px; }
+      .vpc              { padding: 18px 16px; }
+      .trust-grid       { gap: 16px; }
+      .trust-card       { padding: 28px 20px; }
+      .faq-grid         { gap: 12px; }
+      .faq-card         { padding: 22px 18px; }
+      .caixa-tabs       { grid-template-columns: 1fr; gap: 8px; }
+      .caixa-panel p    { font-size: .875rem; }
+      .price-wrap       { max-width: 100%; }
+
+      /* — Nav mobile — botão escondido — */
+      .nav-btn { display: none; }
+
+      /* — Footer — */
+      footer p       { font-size: .7rem; }
+      .footer-brand  { font-size: .8rem; }
     }
 
     /* ============================================
@@ -1531,7 +1589,7 @@
   <div class="container">
     <!-- HERO LOGO -->
     <div class="hero-logo">
-      <svg viewBox="0 0 320 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 208 80" fill="none" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <linearGradient id="heroN" x1="0" y1="0" x2="56" y2="80" gradientUnits="userSpaceOnUse">
             <stop offset="0%" stop-color="#4D94FF"/>
@@ -1549,15 +1607,14 @@
         <polygon points="14,10 26,10 14,30" fill="url(#heroNShade)"/>
         <polygon points="44,70 32,70 44,50" fill="url(#heroNShade)"/>
         <!-- ETWORK -->
-        <text x="70" y="44" font-family="'Segoe UI Black','Segoe UI',system-ui,sans-serif" font-weight="900" font-size="36" fill="#FFFFFF" letter-spacing="-1">ETWORK</text>
+        <text x="62" y="44" font-family="'Segoe UI Black','Segoe UI',system-ui,sans-serif" font-weight="900" font-size="30" fill="#FFFFFF" letter-spacing="-0.5">ETWORK</text>
         <!-- MASTER -->
-        <text x="72" y="68" font-family="'Segoe UI Black','Segoe UI',system-ui,sans-serif" font-weight="900" font-size="22" fill="#4D94FF" letter-spacing="8">MASTER</text>
+        <text x="64" y="66" font-family="'Segoe UI Black','Segoe UI',system-ui,sans-serif" font-weight="900" font-size="19" fill="#4D94FF" letter-spacing="6">MASTER</text>
       </svg>
     </div>
 
     <h1>
-      <span class="h1-brand">Network Master</span>, a comunidade feita para quem quer crescer<br>
-      <span class="h1-dim">seja iniciante ou avançado</span>
+      <span class="h1-brand">Network Master</span>, a comunidade feita para quem quer<br>crescer <span class="h1-dim">seja iniciante ou avançado</span>
     </h1>
     <p class="hero-sub">
       É aqui onde as conexões certas viram oportunidades, você aprende, troca e evolui com quem está no jogo, uma comunidade para quem quer subir de nível. Se você entendeu isso, é porque é pra você.
@@ -1954,7 +2011,7 @@
 <section class="section" style="background:var(--black);">
   <div class="container">
     <div class="section-header">
-      <h2 style="font-size:clamp(2rem,5vw,3rem); font-weight:900; text-transform:uppercase;">FAQ</h2>
+      <h2 class="faq-title">FAQ</h2>
     </div>
     <div class="faq-grid">
 
@@ -2055,10 +2112,14 @@ function autoScroll(selector) {
   if (!wrap) return;
   var speed = 0.6;
   var paused = false;
-  wrap.addEventListener('mouseenter', function() { paused = true; });
-  wrap.addEventListener('mouseleave', function() { paused = false; });
+  var isMobile = window.matchMedia('(max-width: 480px)').matches;
+  // No desktop pausa ao hover; no mobile não pausa (user faz scroll vertical da página)
+  if (!isMobile) {
+    wrap.addEventListener('mouseenter', function() { paused = true; });
+    wrap.addEventListener('mouseleave', function() { paused = false; });
+  }
   wrap.addEventListener('touchstart', function() { paused = true; }, {passive: true});
-  wrap.addEventListener('touchend', function() { setTimeout(function() { paused = false; }, 2000); }, {passive: true});
+  wrap.addEventListener('touchend', function() { setTimeout(function() { paused = false; }, 1000); }, {passive: true});
   (function scroll() {
     if (!paused) {
       wrap.scrollLeft += speed;
