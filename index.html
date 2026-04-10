@@ -2119,19 +2119,25 @@ function autoScroll(selector) {
   var wrap = document.querySelector(selector);
   if (!wrap) return;
   var speed = 0.6;
-  var paused = false;
   var isMobile = window.matchMedia('(max-width: 480px)').matches;
-  if (!isMobile) {
+
+  function move() {
+    wrap.scrollLeft += speed;
+    if (wrap.scrollLeft >= wrap.scrollWidth - wrap.clientWidth - 2) wrap.scrollLeft = 0;
+  }
+
+  if (isMobile) {
+    // Mobile: nunca para, usa setInterval como garantia
+    setInterval(move, 16);
+  } else {
+    var paused = false;
     wrap.addEventListener('mouseenter', function() { paused = true; });
     wrap.addEventListener('mouseleave', function() { paused = false; });
+    (function scroll() {
+      if (!paused) move();
+      requestAnimationFrame(scroll);
+    })();
   }
-  (function scroll() {
-    if (!paused) {
-      wrap.scrollLeft += speed;
-      if (wrap.scrollLeft >= wrap.scrollWidth - wrap.clientWidth - 2) wrap.scrollLeft = 0;
-    }
-    requestAnimationFrame(scroll);
-  })();
 }
 autoScroll('.modulos-scroll-wrap');
 autoScroll('.resultados-scroll-wrap');
